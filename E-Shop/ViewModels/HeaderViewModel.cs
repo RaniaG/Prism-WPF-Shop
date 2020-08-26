@@ -17,7 +17,7 @@ namespace E_Shop.ViewModels
         }
         public HeaderViewModel()
         {
-
+            Username = "Rania";
         }
     }
 }

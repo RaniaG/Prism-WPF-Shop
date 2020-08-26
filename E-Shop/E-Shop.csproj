@@ -119,5 +119,17 @@
   <ItemGroup>
     <Folder Include="Assets\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\E-Shop.Core\E-Shop.Core.csproj">
+      <Project>{759f13f2-ba1e-4e94-ac5a-2d05edce0a3b}</Project>
+      <Name>E-Shop.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\cart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\menu.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

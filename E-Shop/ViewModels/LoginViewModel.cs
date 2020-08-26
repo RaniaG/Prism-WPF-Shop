@@ -44,7 +44,10 @@ namespace E_Shop.ViewModels
         private void Login()
         {
             //validate username
-            RequestClose?.Invoke(new DialogResult(ButtonResult.OK));
+            //should return 
+            var p= new DialogParameters();
+            p.Add("username", Username);
+            RequestClose?.Invoke(new DialogResult(ButtonResult.OK,p));
         }
 
         public bool CanCloseDialog()

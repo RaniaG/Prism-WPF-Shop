@@ -2,6 +2,7 @@
 using E_Shop.Views;
 using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Regions;
 using Prism.Services.Dialogs;
 using System.Windows;
 
@@ -12,10 +13,11 @@ namespace E_Shop
     /// </summary>
     public partial class App
     {
+
         protected override Window CreateShell()
         {
             Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
-            if(ShowLoginDialog())
+            if(IsLoggedIn())
             {
                 var mainWindow=Container.Resolve<MainWindow>();
                 mainWindow.Loaded += (_, __) =>
@@ -35,9 +37,9 @@ namespace E_Shop
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterDialog<LoginView, LoginViewModel>();
-
         }
-        private bool ShowLoginDialog()
+
+        private bool IsLoggedIn()
         {
             var result = false;
             var dialogService = Container.Resolve<IDialogService>();

@@ -8,14 +8,51 @@
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource btn-primary}">
+            <Setter Property="Padding" Value="0 0"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="FontSize" Value="10"/>
+
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Width}"  />
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid Style="{StaticResource grid-primary}">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding Username}" Style="{StaticResource text-light}" HorizontalAlignment="Left"/>
-            <StackPanel HorizontalAlignment="Right">
-                <Button>
-                    <Image Source="cart.png"/>
-                </Button>
-            </StackPanel>
-        </StackPanel>
+        <DockPanel LastChildFill="False">
+            <TextBlock Text="{Binding Username}" Style="{StaticResource text-light}" DockPanel.Dock="Left"/>
+
+            <Menu DockPanel.Dock="Right" >
+                <MenuItem>
+                    <MenuItem.Icon>
+                        <Image Source="menu.png"/>
+                    </MenuItem.Icon>
+                    <MenuItem Header="Home" />
+                    <MenuItem Header="Filter" />
+                    <Separator />
+                    <MenuItem Header="Logout" />
+                </MenuItem>
+            </Menu>
+
+            <Button DockPanel.Dock="Right" RenderTransformOrigin="0.283,0.413">
+                <Grid >
+                    <Image Source="cart.png" />
+                    <Label Content="3"  Margin="0 0 30 7" />
+                </Grid>
+            </Button>
+        </DockPanel>
     </Grid>
 </UserControl>

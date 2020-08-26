@@ -13,8 +13,12 @@
     <Style TargetType="Button" x:Key="btn-base">
         <Setter Property="FontSize" Value="16"/>
     </Style>
-    <Style TargetType="Button" x:Key="btn-primary" BasedOn="{StaticResource btn-base}">
+    <Style TargetType="Button" x:Key="btn-secondary" BasedOn="{StaticResource btn-base}">
         <Setter Property="Background" Value="{StaticResource color-secondary}"/>
+        <Setter Property="Padding" Value="0 10" />
+    </Style>
+    <Style TargetType="Button" x:Key="btn-primary" BasedOn="{StaticResource btn-base}">
+        <Setter Property="Background" Value="{StaticResource color-primary}"/>
         <Setter Property="Padding" Value="0 10" />
     </Style>
     <Style TargetType="TextBlock" x:Key="text-light" BasedOn="{StaticResource textblock-base}">
@@ -26,4 +30,13 @@
     <Style TargetType="Grid" x:Key="grid-primary">
         <Setter Property="Background"  Value="{StaticResource color-primary}"/>
     </Style>
+    <Style TargetType="MenuItem">
+        <Setter Property="Background"  Value="{StaticResource color-primary}"/>
+        <Setter Property="BorderBrush"  Value="{StaticResource color-primary}"/>
+    </Style>
+    <Style TargetType="Menu">
+        <Setter Property="Background"  Value="{StaticResource color-primary}"/>
+        <Setter Property="BorderBrush"  Value="{StaticResource color-primary}"/>
+    </Style>
+
 </ResourceDictionary>
