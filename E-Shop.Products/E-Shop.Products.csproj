@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{759F13F2-BA1E-4E94-AC5A-2D05EDCE0A3B}</ProjectGuid>
+    <ProjectGuid>{D58AA958-9DFB-4E47-BF0F-317F0279CFBF}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>E_Shop.Core</RootNamespace>
-    <AssemblyName>E-Shop.Core</AssemblyName>
+    <RootNamespace>E_Shop.Products</RootNamespace>
+    <AssemblyName>E-Shop.Products</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -49,13 +49,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Consts\CartActions.cs" />
-    <Compile Include="Consts\RegionNames.cs" />
-    <Compile Include="Entities\CartItem.cs" />
-    <Compile Include="Entities\CartEventItem.cs" />
-    <Compile Include="Entities\Product.cs" />
-    <Compile Include="Events\ShowFilterEvent.cs" />
-    <Compile Include="Events\UpdateCartEvent.cs" />
+    <Compile Include="ProductsModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -69,9 +63,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewModels\ViewAViewModel.cs" />
-    <Compile Include="Views\ViewA.xaml.cs">
-      <DependentUpon>ViewA.xaml</DependentUpon>
+    <Compile Include="ViewModels\ProductsListViewModel.cs" />
+    <Compile Include="Views\ProductsListView.xaml.cs">
+      <DependentUpon>ProductsListView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -83,15 +77,20 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Page Include="Views\ViewA.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <ProjectReference Include="..\E-Shop.Core\E-Shop.Core.csproj">
+      <Project>{759f13f2-ba1e-4e94-ac5a-2d05edce0a3b}</Project>
+      <Name>E-Shop.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\ProductsListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
