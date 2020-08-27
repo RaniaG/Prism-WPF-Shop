@@ -22,6 +22,8 @@ namespace E_Shop.Products
         {
             containerRegistry.RegisterForNavigation<ProductsListView, ProductsListViewModel>();
             containerRegistry.RegisterForNavigation<ProductDetailsView, ProductDetailsViewModel>();
+            containerRegistry.RegisterForNavigation<CartView, CartViewModel>();
+
         }
     }
 }

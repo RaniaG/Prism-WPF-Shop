@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace E_Shop.Converters
+namespace E_Shop.Core.Converters
 {
     public class IntToVisibilityConverter : IValueConverter
     {

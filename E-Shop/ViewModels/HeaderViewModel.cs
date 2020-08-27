@@ -1,8 +1,10 @@
 ﻿using E_Shop.Core.Consts;
 using E_Shop.Core.Entities;
 using E_Shop.Core.Events;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,15 +33,20 @@ namespace E_Shop.ViewModels
             get { return _isFilterVisible; }
             set { SetProperty(ref _isFilterVisible, value); }
         }
+        public DelegateCommand NavigateToCartCommand { get; set; }
         private readonly IEventAggregator _eventAggregator;
-        public HeaderViewModel(IEventAggregator eventAggregator)
+        private readonly IRegionManager _regionManager;
+
+        public HeaderViewModel(IEventAggregator eventAggregator,IRegionManager regionManager)
         {
             Username = "Rania";
             IsFilterVisible = true;
 
             _eventAggregator = eventAggregator;
+            _regionManager = regionManager;
 
             SubscribeToEvents();
+            InitCommands();
         }
         private void SubscribeToEvents()
         {
@@ -50,6 +57,15 @@ namespace E_Shop.ViewModels
             //Update Cart Event
             var UpdateCartEvent = _eventAggregator.GetEvent<UpdateCartEvent>();
             UpdateCartEvent.Subscribe((res) => UpdateCartItems(res));
+        }
+        private void InitCommands()
+        {
+            NavigateToCartCommand = new DelegateCommand(NavigateToCart);
+        }
+
+        private void NavigateToCart()
+        {
+            _regionManager.RequestNavigate(RegionNames.ContentRegion, "CartView");
         }
 
         private void UpdateCartItems(CartEventItem cartEventItem)

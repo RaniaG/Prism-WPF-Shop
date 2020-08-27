@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace E_Shop.Converters
+namespace E_Shop.Core.Converters
 {
-    public class BooleanToVisibilityConverter : IValueConverter
+    public class BooleanToVisabilityNegativeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? Visibility.Visible : Visibility.Collapsed;
+            return !(bool)value ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

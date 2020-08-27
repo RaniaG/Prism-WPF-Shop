@@ -26,7 +26,10 @@
     </Style>
     <Style TargetType="TextBlock" x:Key="textblock-error" BasedOn="{StaticResource textblock-base}">
         <Setter Property="Foreground" Value="Red"/>
-    </Style> 
+    </Style>
+    <Style TargetType="TextBlock" x:Key="textblock-success" BasedOn="{StaticResource textblock-base}">
+        <Setter Property="Foreground" Value="LimeGreen"/>
+    </Style>
     <Style TargetType="Grid" x:Key="grid-primary">
         <Setter Property="Background"  Value="{StaticResource color-primary}"/>
     </Style>
@@ -45,6 +48,11 @@
     <Style TargetType="TextBlock" x:Key="product-price" BasedOn="{StaticResource textblock-base}">
         <Setter Property="FontWeight" Value="700"/>
         <Setter Property="Margin" Value="0 10"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="textblock-link" BasedOn="{StaticResource textblock-base}">
+        <Setter Property="Foreground" Value="Blue"/>
+        <Setter Property="TextDecorations" Value="Underline"/>
+        <Setter Property="Cursor" Value="Hand"/>
     </Style>
 
 </ResourceDictionary>
