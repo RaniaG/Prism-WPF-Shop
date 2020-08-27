@@ -10,7 +10,17 @@ namespace E_Shop.Core.Entities
 {
     public class CartItem:BindableBase
     {
-        public int Count { get; set; }
-        public Product Product { get; set; }
+        private int _count=1;
+        public int Count
+        {
+            get { return _count; }
+            set { SetProperty(ref _count, value); }
+        }
+        private Product _product;
+        public Product Product
+        {
+            get { return _product; }
+            set { SetProperty(ref _product, value); }
+        }
     }
 }

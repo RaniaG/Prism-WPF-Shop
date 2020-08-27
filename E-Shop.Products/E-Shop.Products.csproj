@@ -63,7 +63,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\ProductDetailsViewModel.cs" />
     <Compile Include="ViewModels\ProductsListViewModel.cs" />
+    <Compile Include="Views\ProductDetailsView.xaml.cs">
+      <DependentUpon>ProductDetailsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProductsListView.xaml.cs">
       <DependentUpon>ProductsListView.xaml</DependentUpon>
     </Compile>
@@ -84,9 +88,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+      <Version>1.1.19</Version>
+    </PackageReference>
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\ProductDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ProductsListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

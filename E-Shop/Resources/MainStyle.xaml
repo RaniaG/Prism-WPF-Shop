@@ -40,9 +40,11 @@
     </Style>
     <Style TargetType="TextBlock" x:Key="product-title" BasedOn="{StaticResource textblock-base}">
         <Setter Property="FontWeight" Value="700"/>
+        <Setter Property="Margin" Value="0 10"/>
     </Style>
     <Style TargetType="TextBlock" x:Key="product-price" BasedOn="{StaticResource textblock-base}">
         <Setter Property="FontWeight" Value="700"/>
+        <Setter Property="Margin" Value="0 10"/>
     </Style>
 
 </ResourceDictionary>

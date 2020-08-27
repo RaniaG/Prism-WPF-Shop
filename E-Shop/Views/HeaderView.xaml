@@ -31,7 +31,9 @@
                 </Setter.Value>
             </Setter>
         </Style>
-            <converters:BooleanToVisibilityConverter x:Key="boolToVisConverter"></converters:BooleanToVisibilityConverter>
+        <converters:BooleanToVisibilityConverter x:Key="boolToVisConverter"></converters:BooleanToVisibilityConverter>
+        <converters:IntToVisibilityConverter x:Key="intToVisConverter"></converters:IntToVisibilityConverter>
+
     </UserControl.Resources>
     <Grid Style="{StaticResource grid-primary}">
         <DockPanel LastChildFill="False">
@@ -52,7 +54,7 @@
             <Button DockPanel.Dock="Right" RenderTransformOrigin="0.283,0.413">
                 <Grid >
                     <Image Source="cart.png"  MaxHeight="30"/>
-                    <Label Content="3"  Margin="0 0 30 7" />
+                    <Label Content="{Binding CartItemsCount}" Visibility="{Binding CartItemsCount, Converter={StaticResource intToVisConverter}}"  Margin="0 0 30 7" />
                 </Grid>
             </Button>
         </DockPanel>
