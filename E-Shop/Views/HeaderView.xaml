@@ -37,10 +37,10 @@
         <DockPanel LastChildFill="False">
             <TextBlock Text="{Binding Username}" Style="{StaticResource text-light}" DockPanel.Dock="Left"/>
 
-            <Menu DockPanel.Dock="Right" >
-                <MenuItem>
-                    <MenuItem.Icon>
-                        <Image Source="menu.png"/>
+            <Menu DockPanel.Dock="Right"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                <MenuItem >
+                    <MenuItem.Icon >
+                        <Image Source="menu.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </MenuItem.Icon>
                     <MenuItem Header="Home" />
                     <MenuItem Header="Filter" Visibility="{Binding IsFilterVisible,Converter={StaticResource boolToVisConverter}, Mode=OneWay}"/>
@@ -51,7 +51,7 @@
 
             <Button DockPanel.Dock="Right" RenderTransformOrigin="0.283,0.413">
                 <Grid >
-                    <Image Source="cart.png" />
+                    <Image Source="cart.png"  MaxHeight="30"/>
                     <Label Content="3"  Margin="0 0 30 7" />
                 </Grid>
             </Button>

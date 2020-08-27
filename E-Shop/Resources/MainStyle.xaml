@@ -38,5 +38,11 @@
         <Setter Property="Background"  Value="{StaticResource color-primary}"/>
         <Setter Property="BorderBrush"  Value="{StaticResource color-primary}"/>
     </Style>
+    <Style TargetType="TextBlock" x:Key="product-title" BasedOn="{StaticResource textblock-base}">
+        <Setter Property="FontWeight" Value="700"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="product-price" BasedOn="{StaticResource textblock-base}">
+        <Setter Property="FontWeight" Value="700"/>
+    </Style>
 
 </ResourceDictionary>

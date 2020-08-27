@@ -117,13 +117,15 @@
   <ItemGroup>
     <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\E-Shop.Core\E-Shop.Core.csproj">
       <Project>{759f13f2-ba1e-4e94-ac5a-2d05edce0a3b}</Project>
       <Name>E-Shop.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\E-Shop.Products\E-Shop.Products.csproj">
+      <Project>{D58AA958-9DFB-4E47-BF0F-317F0279CFBF}</Project>
+      <Name>E-Shop.Products</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +133,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Products\tv.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

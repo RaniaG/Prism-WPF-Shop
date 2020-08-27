@@ -35,7 +35,7 @@ namespace E_Shop.ViewModels
         public HeaderViewModel(IEventAggregator eventAggregator)
         {
             Username = "Rania";
-            IsFilterVisible = false;
+            IsFilterVisible = true;
 
             _eventAggregator = eventAggregator;
 

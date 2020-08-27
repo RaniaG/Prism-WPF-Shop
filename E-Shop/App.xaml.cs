@@ -1,4 +1,5 @@
-﻿using E_Shop.ViewModels;
+﻿using E_Shop.Products;
+using E_Shop.ViewModels;
 using E_Shop.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -37,6 +38,11 @@ namespace E_Shop
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterDialog<LoginView, LoginViewModel>();
+        }
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+        {
+            base.ConfigureModuleCatalog(moduleCatalog);
+            moduleCatalog.AddModule<ProductsModule>();
         }
 
         private bool IsLoggedIn()

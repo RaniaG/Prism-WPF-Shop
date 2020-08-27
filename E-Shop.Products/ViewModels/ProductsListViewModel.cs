@@ -1,4 +1,5 @@
 ﻿using E_Shop.Core.Entities;
+using Prism.Events;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,18 @@ namespace E_Shop.Products.ViewModels
         {
             get { return _products; }
             set { SetProperty(ref _products, value); }
+        }
+
+        private readonly IEventAggregator _eventAggregator;
+        public ProductsListViewModel(IEventAggregator eventAggregator)
+        {
+            _eventAggregator = eventAggregator;
+            Products = new ObservableCollection<Product>(new List<Product>
+            {
+                new Product { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"},
+                new Product { Id=2, Title="LG Smart TV 2", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"},
+                new Product { Id=3, Title="LG Smart TV 3", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"},
+            });
         }
     }
 }
