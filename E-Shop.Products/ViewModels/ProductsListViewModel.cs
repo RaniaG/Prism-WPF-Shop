@@ -1,5 +1,8 @@
 ﻿using E_Shop.Core.Consts;
 using E_Shop.Core.Entities;
+using E_Shop.Core.Events;
+using E_Shop.Products.Views;
+using Prism;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
@@ -13,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace E_Shop.Products.ViewModels
 {
-    public class ProductsListViewModel:BindableBase
+    public class ProductsListViewModel:BindableBase,INavigationAware
     {
         private ObservableCollection<Product> _products;
         public ObservableCollection<Product> Products
@@ -25,6 +28,7 @@ namespace E_Shop.Products.ViewModels
 
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;
+
 
         public ProductsListViewModel(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
@@ -43,7 +47,24 @@ namespace E_Shop.Products.ViewModels
         {
             var navigationParams = new NavigationParameters();
             navigationParams.Add("product", product);
-            _regionManager.RequestNavigate(RegionNames.ContentRegion, "ProductDetailsView", navigationParams);
+            _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(ProductDetailsView), navigationParams);
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            _eventAggregator.GetEvent<ShowFilterEvent>().Publish(true);
+
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            _eventAggregator.GetEvent<ShowFilterEvent>().Publish(false);
+
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using E_Shop.Core.Consts;
 using E_Shop.Core.Entities;
 using E_Shop.Core.Events;
+using E_Shop.Products.Views;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
@@ -48,7 +49,7 @@ namespace E_Shop.Products.ViewModels
                 Count = ProductCartItem.Count
             };
             _eventAggregator.GetEvent<UpdateCartEvent>().Publish(eventPayload);
-            _regionManager.RequestNavigate(RegionNames.ContentRegion, "ProductsListView");
+            _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(ProductsListView));
         }
 
         private void UpdateCount(string obj)
