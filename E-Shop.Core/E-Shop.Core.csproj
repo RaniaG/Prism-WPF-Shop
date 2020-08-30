@@ -54,13 +54,12 @@
     <Compile Include="Converters\BooleanToVisabilityNegativeConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
-    <Compile Include="Entities\CartItem.cs" />
-    <Compile Include="Entities\CartEventItem.cs" />
-    <Compile Include="Entities\Product.cs" />
-    <Compile Include="Entities\ProductsFilter.cs" />
+    <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductsFilter.cs" />
     <Compile Include="Events\ShowFilterDialogEvent.cs" />
     <Compile Include="Events\ShowFilterEvent.cs" />
-    <Compile Include="Events\UpdateCartEvent.cs" />
+    <Compile Include="Events\AddToCartEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

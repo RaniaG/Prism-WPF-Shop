@@ -1,6 +1,6 @@
 ﻿using E_Shop.Core.Consts;
 using E_Shop.Core.Entities;
-using E_Shop.Products.Views;
+using E_Shop.Views.Products;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Shop.Products.ViewModels
+namespace E_Shop.ViewModels.Products
 {
     public class CartViewModel : BindableBase
     {

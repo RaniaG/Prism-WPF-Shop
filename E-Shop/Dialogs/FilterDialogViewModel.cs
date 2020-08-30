@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Shop.Core.Dialogs
+namespace E_Shop.Dialogs
 {
     public class FilterDialogViewModel : BindableBase, IDialogAware
     {

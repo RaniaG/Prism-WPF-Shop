@@ -1,7 +1,9 @@
 ﻿using E_Shop.Core.Consts;
 using E_Shop.Core.Entities;
 using E_Shop.Core.Events;
-using E_Shop.Products.Dialogs;
+
+using E_Shop.Views;
+using E_Shop.Views.Products;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
@@ -36,23 +38,18 @@ namespace E_Shop.ViewModels
             set { SetProperty(ref _isFilterVisible, value); }
         }
 
-
-
-        public DelegateCommand NavigateToCartCommand { get; set; }
-        public DelegateCommand ShowFilterDialogCommand { get; set; }
+        public DelegateCommand<string> NavigateCommand { get; set; }
 
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;
-        private readonly IDialogService _dialogService;
 
-        public HeaderViewModel(IEventAggregator eventAggregator,IRegionManager regionManager, IDialogService dialogService)
+        public HeaderViewModel(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             Username = "Rania";
             IsFilterVisible = true;
 
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
-            _dialogService = dialogService;
 
             SubscribeToEvents();
             InitCommands();
@@ -64,35 +61,35 @@ namespace E_Shop.ViewModels
             ShowFilterEvent.Subscribe((res) => IsFilterVisible = res);
 
             //Update Cart Event
-            var UpdateCartEvent = _eventAggregator.GetEvent<UpdateCartEvent>();
+            var UpdateCartEvent = _eventAggregator.GetEvent<AddToCartEvent>();
             UpdateCartEvent.Subscribe((res) => UpdateCartItems(res));
         }
         private void InitCommands()
         {
-            NavigateToCartCommand = new DelegateCommand(NavigateToCart);
-            ShowFilterDialogCommand = new DelegateCommand(ShowFilterDialog);
+            NavigateCommand = new DelegateCommand<string>(Navigate);
         }
 
-        private void ShowFilterDialog()
+        private void UpdateCartItems(CartItem cartEventItem)
         {
-            _eventAggregator.GetEvent<ShowFilterDialogEvent>().Publish();
+            CartItemsCount += cartEventItem.Count;
         }
-
-        private void NavigateToCart()
+        private void Navigate(string url)
         {
-            _regionManager.RequestNavigate(RegionNames.ContentRegion, "CartView");
-        }
-
-        private void UpdateCartItems(CartEventItem cartEventItem)
-        {
-            switch (cartEventItem.CartAction)
+            switch (url)
             {
-                case CartAction.Add:
-                    CartItemsCount += cartEventItem.Count;
+                case "home":
+                    _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(ProductsListView));
                     break;
-                case CartAction.Remove:
-                    CartItemsCount -= cartEventItem.Count;
+                case "cart":
+                    _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(CartView));
                     break;
+                case "logout":
+                    _regionManager.RequestNavigate(RegionNames.MainRegion, nameof(LoginView));
+                    break;
+                case "filter":
+                    _eventAggregator.GetEvent<ShowFilterDialogEvent>().Publish();
+                    break;
+
             }
         }
 

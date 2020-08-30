@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace E_Shop.Products.Views
+namespace E_Shop.Views.Products
 {
     /// <summary>
     /// Interaction logic for ProductDetailsView.xaml

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace E_Shop.Products.Dialogs
+namespace E_Shop.Views.Products
 {
     /// <summary>
-    /// Interaction logic for FilterDialogView.xaml
+    /// Interaction logic for ProductsListView.xaml
     /// </summary>
-    public partial class FilterDialogView : UserControl
+    public partial class ProductsListView : UserControl
     {
-        public FilterDialogView()
+        public ProductsListView()
         {
             InitializeComponent();
         }

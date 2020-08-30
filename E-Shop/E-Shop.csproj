@@ -56,6 +56,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Dialogs\FilterDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\MainStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -72,6 +76,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Products\CartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Products\ProductDetailsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Products\ProductsListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ShellWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -80,8 +96,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Dialogs\FilterDialogView.xaml.cs" />
+    <Compile Include="Dialogs\FilterDialogViewModel.cs" />
     <Compile Include="ViewModels\HeaderViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Products\CartViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductsListViewModel.cs" />
     <Compile Include="ViewModels\ShellWindowViewModel.cs" />
     <Compile Include="Views\HeaderView.xaml.cs">
       <DependentUpon>HeaderView.xaml</DependentUpon>
@@ -92,6 +113,9 @@
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Products\CartView.xaml.cs" />
+    <Compile Include="Views\Products\ProductDetailsView.xaml.cs" />
+    <Compile Include="Views\Products\ProductsListView.xaml.cs" />
     <Compile Include="Views\ShellWindow.xaml.cs">
       <DependentUpon>ShellWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -121,6 +145,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+      <Version>1.1.19</Version>
+    </PackageReference>
     <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
   </ItemGroup>
   <ItemGroup />
@@ -128,10 +155,6 @@
     <ProjectReference Include="..\E-Shop.Core\E-Shop.Core.csproj">
       <Project>{759f13f2-ba1e-4e94-ac5a-2d05edce0a3b}</Project>
       <Name>E-Shop.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\E-Shop.Products\E-Shop.Products.csproj">
-      <Project>{D58AA958-9DFB-4E47-BF0F-317F0279CFBF}</Project>
-      <Name>E-Shop.Products</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

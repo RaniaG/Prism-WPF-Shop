@@ -1,7 +1,7 @@
 ﻿using E_Shop.Core.Consts;
 using E_Shop.Core.Entities;
 using E_Shop.Core.Events;
-using E_Shop.Products.Views;
+using E_Shop.Views.Products;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Shop.Products.ViewModels
+namespace E_Shop.ViewModels.Products
 {
     public class ProductDetailsViewModel : BindableBase, INavigationAware
     {
@@ -42,13 +42,12 @@ namespace E_Shop.Products.ViewModels
         }
         private void AddToCart()
         {
-            var eventPayload = new CartEventItem
+            var eventPayload = new CartItem
             {
-                CartAction = CartAction.Add,
                 Product = ProductCartItem.Product,
                 Count = ProductCartItem.Count
             };
-            _eventAggregator.GetEvent<UpdateCartEvent>().Publish(eventPayload);
+            _eventAggregator.GetEvent<AddToCartEvent>().Publish(eventPayload);
             _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(ProductsListView));
         }
 

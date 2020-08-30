@@ -1,8 +1,8 @@
 ﻿using E_Shop.Core.Consts;
 using E_Shop.Core.Entities;
 using E_Shop.Core.Events;
-using E_Shop.Products.Dialogs;
-using E_Shop.Products.Views;
+using E_Shop.Dialogs;
+using E_Shop.Views.Products;
 using Prism;
 using Prism.Commands;
 using Prism.Events;
@@ -16,7 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Shop.Products.ViewModels
+namespace E_Shop.ViewModels.Products
 {
     public class ProductsListViewModel:BindableBase,INavigationAware
     {

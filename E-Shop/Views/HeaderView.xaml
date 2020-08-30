@@ -44,14 +44,14 @@
                     <MenuItem.Icon >
                         <Image Source="menu.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </MenuItem.Icon>
-                    <MenuItem Header="Home" />
-                    <MenuItem Header="Filter" Command="{Binding ShowFilterDialogCommand}" Visibility="{Binding IsFilterVisible,Converter={StaticResource boolToVisConverter}, Mode=OneWay}"/>
+                    <MenuItem Header="Home" Command="{Binding NavigateCommand}" CommandParameter="home"/>
+                    <MenuItem Header="Filter" Command="{Binding NavigateCommand}" CommandParameter="filter" Visibility="{Binding IsFilterVisible,Converter={StaticResource boolToVisConverter}, Mode=OneWay}"/>
                     <Separator />
-                    <MenuItem Header="Logout" />
+                    <MenuItem Header="Logout" Command="{Binding NavigateCommand}"  CommandParameter="logout"/>
                 </MenuItem>
             </Menu>
 
-            <Button DockPanel.Dock="Right" RenderTransformOrigin="0.283,0.413" Command="{Binding NavigateToCartCommand}">
+            <Button DockPanel.Dock="Right" RenderTransformOrigin="0.283,0.413" Command="{Binding NavigateCommand}" CommandParameter="cart">
                 <Grid >
                     <Image Source="cart.png"  MaxHeight="30"/>
                     <Label Content="{Binding CartItemsCount}" Visibility="{Binding CartItemsCount, Converter={StaticResource intToVisConverter}}"  Margin="0 0 30 7" />

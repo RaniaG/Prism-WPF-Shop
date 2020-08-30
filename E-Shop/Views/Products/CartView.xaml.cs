@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace E_Shop.Products.Views
+namespace E_Shop.Views.Products
 {
     /// <summary>
-    /// Interaction logic for ProductsListView.xaml
+    /// Interaction logic for CartView.xaml
     /// </summary>
-    public partial class ProductsListView : UserControl
+    public partial class CartView : UserControl
     {
-        public ProductsListView()
+        public CartView()
         {
             InitializeComponent();
+        }
+
+        private void dataGridChange(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

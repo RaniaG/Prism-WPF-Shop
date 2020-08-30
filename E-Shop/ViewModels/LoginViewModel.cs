@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace E_Shop.ViewModels
 {
-    public class LoginViewModel : BindableBase
+    public class LoginViewModel : BindableBase,INavigationAware
     {
         private string _username;
         public string Username
@@ -50,6 +50,17 @@ namespace E_Shop.ViewModels
             _regionManager.RequestNavigate(RegionNames.MainRegion, "HomeContainerView");
         }
 
-       
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return false;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+        }
     }
 }
