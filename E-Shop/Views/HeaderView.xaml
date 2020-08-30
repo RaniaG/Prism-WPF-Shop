@@ -45,7 +45,7 @@
                         <Image Source="menu.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </MenuItem.Icon>
                     <MenuItem Header="Home" />
-                    <MenuItem Header="Filter" Visibility="{Binding IsFilterVisible,Converter={StaticResource boolToVisConverter}, Mode=OneWay}"/>
+                    <MenuItem Header="Filter" Command="{Binding ShowFilterDialogCommand}" Visibility="{Binding IsFilterVisible,Converter={StaticResource boolToVisConverter}, Mode=OneWay}"/>
                     <Separator />
                     <MenuItem Header="Logout" />
                 </MenuItem>

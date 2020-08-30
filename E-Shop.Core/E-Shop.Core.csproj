@@ -57,6 +57,8 @@
     <Compile Include="Entities\CartItem.cs" />
     <Compile Include="Entities\CartEventItem.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\ProductsFilter.cs" />
+    <Compile Include="Events\ShowFilterDialogEvent.cs" />
     <Compile Include="Events\ShowFilterEvent.cs" />
     <Compile Include="Events\UpdateCartEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -82,9 +84,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dialogs\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
   </ItemGroup>

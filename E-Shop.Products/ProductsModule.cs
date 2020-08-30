@@ -1,4 +1,6 @@
 ﻿using E_Shop.Core.Consts;
+using E_Shop.Core.Dialogs;
+using E_Shop.Products.Dialogs;
 using E_Shop.Products.ViewModels;
 using E_Shop.Products.Views;
 using Prism.Ioc;
@@ -24,6 +26,8 @@ namespace E_Shop.Products
             containerRegistry.RegisterForNavigation<ProductDetailsView, ProductDetailsViewModel>();
             containerRegistry.RegisterForNavigation<CartView, CartViewModel>();
 
+
+            containerRegistry.RegisterDialog<FilterDialogView, FilterDialogViewModel>();
         }
     }
 }
