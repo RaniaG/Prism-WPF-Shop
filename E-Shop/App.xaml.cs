@@ -17,27 +17,11 @@ namespace E_Shop
 
         protected override Window CreateShell()
         {
-            Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
-            if(IsLoggedIn())
-            {
-                var mainWindow=Container.Resolve<MainWindow>();
-                mainWindow.Loaded += (_, __) =>
-                {
-                    Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
-                    mainWindow.Activate();
-                };
-                return mainWindow;
-            }
-            else
-            {
-                Current.Shutdown();
-                return null;
-            }
+            return new ShellWindow();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterDialog<LoginView, LoginViewModel>();
         }
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
@@ -45,17 +29,7 @@ namespace E_Shop
             moduleCatalog.AddModule<ProductsModule>();
         }
 
-        private bool IsLoggedIn()
-        {
-            var result = false;
-            var dialogService = Container.Resolve<IDialogService>();
-            var dialogParams = new DialogParameters();
-            dialogService.ShowDialog("LoginView", dialogParams, (r) => {
-                if (r.Result == ButtonResult.OK)
-                    result = true;
-            });
-            return result;
-        }
+       
 
     }
 }

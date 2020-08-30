@@ -10,5 +10,8 @@ namespace E_Shop.Core.Consts
     {
         public static string HeaderRegion = "HeaderRegion";
         public static string ContentRegion = "ContentRegion";
+        public static string MainRegion = "MainRegion";
+
+        
     }
 }

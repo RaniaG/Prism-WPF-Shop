@@ -27,7 +27,9 @@
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="0" Grid.ColumnSpan="2"
              ItemsSource="{Binding Products}" 
-                  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
+                  
+                  >
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="4*">
                     <DataGridTemplateColumn.CellTemplate>
@@ -42,7 +44,9 @@
                                 <TextBlock Style="{StaticResource textblock-link}">
                                     Delete
                                     <b:Interaction.Triggers>
+                                        
                                         <b:EventTrigger EventName="MouseLeftButtonUp">
+                                            <b:CallMethodAction MethodName="dataGridChange"/>
                                             <b:InvokeCommandAction  Command="{Binding DeleteCommand}"/>
                                         </b:EventTrigger>
                                     </b:Interaction.Triggers>

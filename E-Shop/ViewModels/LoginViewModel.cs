@@ -1,5 +1,7 @@
-﻿using Prism.Commands;
+﻿using E_Shop.Core.Consts;
+using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
@@ -9,12 +11,8 @@ using System.Threading.Tasks;
 
 namespace E_Shop.ViewModels
 {
-    public class LoginViewModel : BindableBase, IDialogAware
+    public class LoginViewModel : BindableBase
     {
-        public string Title => "Login";
-
-        public event Action<IDialogResult> RequestClose;
-
         private string _username;
         public string Username
         {
@@ -28,12 +26,16 @@ namespace E_Shop.ViewModels
             set { SetProperty(ref _errorMessage, value); }
         }
         public DelegateCommand LoginCommand { get; set; }
-        public LoginViewModel()
+
+        private readonly IRegionManager _regionManager;
+        public LoginViewModel(IRegionManager regionManager)
         {
             //inject login service
+            _regionManager = regionManager;
 
             LoginCommand = new DelegateCommand(Login, CanLogin);
             LoginCommand.ObservesProperty(() => Username);
+
         }
 
         private bool CanLogin()
@@ -45,24 +47,9 @@ namespace E_Shop.ViewModels
         {
             //validate username
             //should return 
-            var p= new DialogParameters();
-            p.Add("username", Username);
-            RequestClose?.Invoke(new DialogResult(ButtonResult.OK,p));
+            _regionManager.RequestNavigate(RegionNames.MainRegion, "HomeContainerView");
         }
 
-        public bool CanCloseDialog()
-        {
-            return true;
-        }
-
-        public void OnDialogClosed()
-        {
-            RequestClose?.Invoke(new DialogResult(ButtonResult.Cancel));
-        }
-
-        public void OnDialogOpened(IDialogParameters parameters)
-        {
-
-        }
+       
     }
 }
