@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Prism.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Shop.Core.Consts
+namespace E_Shop.Events
 {
-    public enum CartAction
+    public class SubmitCartEvent:PubSubEvent
     {
-        Add,Remove,Submit
     }
 }

@@ -2,6 +2,7 @@
 using E_Shop.Core.Events;
 using E_Shop.Entities;
 using E_Shop.Entities.Interfaces.Services;
+using E_Shop.Events;
 using E_Shop.Models;
 using E_Shop.Views.Products;
 using Prism.Commands;
@@ -104,6 +105,11 @@ namespace E_Shop.ViewModels.Products
         private void Submit()
         {
             _cartService.SubmitCart();
+            var eventPayload = new CartItemEventModel
+            {
+                Action = CartAction.Submit
+            };
+            _eventAggregator.GetEvent<UpdateCartEvent>().Publish(eventPayload);
             _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(ProductsListView));
         }
 

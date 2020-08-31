@@ -1,5 +1,7 @@
 ﻿using E_Shop.Core.Consts;
 using E_Shop.Entities.Interfaces.Services;
+using E_Shop.Views;
+using E_Shop.Views.Products;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -54,7 +56,8 @@ namespace E_Shop.ViewModels
                 ErrorMessage = "Invalid User";
             else
             {
-                _regionManager.RequestNavigate(RegionNames.MainRegion, "HomeContainerView");
+                _regionManager.RequestNavigate(RegionNames.MainRegion, nameof(HomeContainerView));
+                _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(ProductsListView));
             }
         }
 

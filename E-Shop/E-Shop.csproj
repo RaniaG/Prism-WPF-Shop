@@ -103,6 +103,7 @@
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Dialogs\FilterDialogView.xaml.cs" />
     <Compile Include="Dialogs\FilterDialogViewModel.cs" />
+    <Compile Include="Events\SubmitCartEvent.cs" />
     <Compile Include="Events\UpdateCartEvent.cs" />
     <Compile Include="Events\ShowFilterDialogEvent.cs" />
     <Compile Include="Events\ShowFilterEvent.cs" />
@@ -163,7 +164,7 @@
     <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\Cart.xml" />
+    <Resource Include="Data\Orders.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\E-Shop.Business\E-Shop.Business.csproj">

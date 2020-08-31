@@ -20,6 +20,7 @@ namespace E_Shop.Business.Services
         {
             _cartRepository = cartRepository;
             _productRepository = productRepository;
+            _cart = new List<CartItem>();
         }
         public void AddToCart(CartItem cartItem)
         {
@@ -36,8 +37,6 @@ namespace E_Shop.Business.Services
 
         public IEnumerable<CartItemDto> GetUserCart(int userId)
         {
-            if(_cart==null)
-                _cart =  _cartRepository.GetUserCart(userId).ToList();
             return _cart.Select(e =>
             {
                 return new CartItemDto
@@ -57,12 +56,18 @@ namespace E_Shop.Business.Services
 
         public void SubmitCart()
         {
-            _cartRepository.SaveCartItems(_cart);
+            _cartRepository.SaveCartItems( _cart);
+            _cart.Clear();
         }
 
         public int GetUserCartItemsCount(int userId)
         {
-            return _cartRepository.GetUserCartItemsCount(userId);
+            return _cart.Count;
+        }
+
+        public void ClearCart()
+        {
+            _cart = new List<CartItem>();
         }
     }
 }

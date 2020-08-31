@@ -11,15 +11,27 @@ namespace E_Shop.DAL.XMLReader
 {
     public class XMLWriter:IXMLWriter
     {
-        public void Write<T>(string filePath,string rootName, IEnumerable<T> items)
+        public void Append<T>(string filePath, IEnumerable<T> items, string itemsParentNode=null)
         {
-            var root = new XElement(rootName);
+            XElement root = XElement.Load(filePath);
+
+            XElement parentItem = null;
+            if (!string.IsNullOrEmpty(itemsParentNode))
+                parentItem = new XElement(itemsParentNode);
+
             foreach (var item in items)
             {
                 var element = Serializer(item);
-                root.Add(element);
+                if (parentItem != null)
+                    parentItem.Add(element);
+                else
+                    root.Add(element);
             }
 
+            if (parentItem != null)
+                root.Add(parentItem);
+
+            root.Save(filePath);
         }
 
         private XElement Serializer<T>(T item)

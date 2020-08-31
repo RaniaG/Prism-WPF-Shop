@@ -8,6 +8,6 @@ namespace E_Shop.DAL.XMLReader
 {
     public interface IXMLWriter
     {
-        void Write<T>(string filePath, string rootName, IEnumerable<T> items);
+        void Append<T>(string filePath, IEnumerable<T> items, string itemsParentNode = null);
     }
 }

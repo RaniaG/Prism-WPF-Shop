@@ -14,5 +14,7 @@ namespace E_Shop.Entities.Interfaces.Services
         int GetUserCartItemsCount(int userId);
         void RemoveFromCart( CartItem cartItem);
         void SubmitCart();
+        void ClearCart();
+
     }
 }

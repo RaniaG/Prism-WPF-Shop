@@ -1,6 +1,7 @@
 ﻿using E_Shop.Core.Consts;
 using E_Shop.Core.Events;
 using E_Shop.Entities.Interfaces.Services;
+using E_Shop.Events;
 using E_Shop.Models;
 using E_Shop.Views;
 using E_Shop.Views.Products;
@@ -17,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace E_Shop.ViewModels
 {
-    public class HeaderViewModel : BindableBase
+    public class HeaderViewModel : BindableBase,INavigationAware
     {
         private string _username;
         public string Username
@@ -57,14 +58,14 @@ namespace E_Shop.ViewModels
 
             SubscribeToEvents();
             InitCommands();
-            InitData();
         }
 
         private void InitData()
         {
+            _cartService.ClearCart();
             var user = _userService.GetCurrentUser();
             Username = user.Name;
-            CartItemsCount = _cartService.GetUserCartItemsCount(user.Id);
+            CartItemsCount = 0;
             IsFilterVisible = true;
         }
 
@@ -77,6 +78,7 @@ namespace E_Shop.ViewModels
             //Update Cart Event
             var UpdateCartEvent = _eventAggregator.GetEvent<UpdateCartEvent>();
             UpdateCartEvent.Subscribe((res) => UpdateCartItems(res));
+
         }
         private void InitCommands()
         {
@@ -93,6 +95,9 @@ namespace E_Shop.ViewModels
                 case CartAction.Remove:
                     CartItemsCount -= cartEventItem.Count;
                     break;
+                case CartAction.Submit:
+                    CartItemsCount =0;
+                    break;
             }
         }
         private void Navigate(string url)
@@ -106,15 +111,28 @@ namespace E_Shop.ViewModels
                     _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(CartView));
                     break;
                 case "logout":
+                    InitData();
                     _regionManager.RequestNavigate(RegionNames.MainRegion, nameof(LoginView));
                     break;
                 case "filter":
                     _eventAggregator.GetEvent<ShowFilterDialogEvent>().Publish();
                     break;
-
             }
         }
 
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            InitData();
+        }
 
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return false;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+           
+        }
     }
 }

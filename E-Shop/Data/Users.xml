@@ -4,4 +4,8 @@
     <Id>1</Id>
     <Name>Rania</Name>
   </User>
+  <User>
+    <Id>2</Id>
+    <Name>Sara</Name>
+  </User>
 </Users>
