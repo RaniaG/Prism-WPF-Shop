@@ -1,4 +1,5 @@
-﻿using System;
+﻿using E_Shop.Entities.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace E_Shop.Entities.Interfaces.Services
 {
     public interface ICartService
     {
-        IEnumerable<CartItem> GetUserCart(int userId);
+        IEnumerable<CartItemDto> GetUserCart(int userId);
         void AddToCart( CartItem cartItem);
         void RemoveFromCart( CartItem cartItem);
-        void SaveCart(IEnumerable<CartItem> cartItems);
+        void SubmitCart();
     }
 }
