@@ -103,6 +103,7 @@ namespace E_Shop.ViewModels.Products
 
         private void Submit()
         {
+            _cartService.SubmitCart();
             _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(ProductsListView));
         }
 

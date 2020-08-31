@@ -13,10 +13,14 @@ namespace E_Shop.DAL.Repositories
     public class CartRepository : ICartRepository
     {
         private readonly IXMLReader _xMLReader;
+        private readonly IXMLWriter _xMLWriter;
+
         private IEnumerable<CartItem> _cartItems;
-        public CartRepository(IXMLReader xMLReader)
+
+        public CartRepository(IXMLReader xMLReader,IXMLWriter xMLWriter)
         {
             _xMLReader = xMLReader;
+            _xMLWriter = xMLWriter;
             ReadAll();
         }
         private void ReadAll()
@@ -30,7 +34,19 @@ namespace E_Shop.DAL.Repositories
 
         public void SaveCartItems(IEnumerable<CartItem> cartItems)
         {
-            throw new NotImplementedException();
+            foreach (var item in cartItems)
+            {
+                var savedItem=_cartItems.FirstOrDefault(e => e.ProductId == item.ProductId && e.UserId == item.UserId);
+                if(savedItem==null)
+                {
+                    _cartItems.Append(item);
+                }
+                else
+                {
+                    savedItem.Count = item.Count;
+                }
+            }
+            _xMLWriter.Write(DataFilesPaths.Cart,"Cart", _cartItems);
         }
 
         public int GetUserCartItemsCount(int userId)

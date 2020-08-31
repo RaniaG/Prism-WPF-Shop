@@ -13,11 +13,11 @@ namespace E_Shop.DAL.XMLReader
         public IEnumerable<T> Read<T>(string filePath)
         {
             XElement xelement = XElement.Load(filePath);
-            IEnumerable<XElement> employees = xelement.Elements();
+            IEnumerable<XElement> elements = xelement.Elements();
             List<T> result = new List<T>();
-            foreach (var employee in employees)
+            foreach (var element in elements)
             {
-                result.Add(DeSerializer<T>(employee));
+                result.Add(DeSerializer<T>(element));
             }
             return result;
         }

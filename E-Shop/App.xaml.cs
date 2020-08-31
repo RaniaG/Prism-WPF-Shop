@@ -39,6 +39,8 @@ namespace E_Shop
         private void RegisterDependencyInjectionTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IXMLReader, XMLReader>();
+            containerRegistry.RegisterSingleton<IXMLWriter, XMLWriter>();
+
 
             containerRegistry.RegisterSingleton<IUserRepository, UserRepository>();
             containerRegistry.RegisterSingleton<IProductRepository, ProductRepository>();
