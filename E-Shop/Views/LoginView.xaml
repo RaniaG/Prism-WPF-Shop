@@ -38,7 +38,6 @@
                 <TextBlock FontFamily="Segoe UI Symbol" Text="&#xE14D;"  />
                 <TextBlock Text="eShop.com" />
             </StackPanel>
-            <TextBlock Style="{StaticResource textblock-error}" Text="{Binding ErrorMessage}"/>
             <TextBox Text="{Binding Username,UpdateSourceTrigger=PropertyChanged}" />
             <Button Content="Login" Command="{Binding LoginCommand}"/>
         </StackPanel>

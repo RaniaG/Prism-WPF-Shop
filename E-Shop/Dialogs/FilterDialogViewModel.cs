@@ -54,7 +54,7 @@ namespace E_Shop.Dialogs
 
         public void OnDialogClosed()
         {
-            RequestClose?.Invoke(new DialogResult(ButtonResult.Cancel));
+            //RequestClose?.Invoke(new DialogResult(ButtonResult.Cancel));
         }
 
         public void OnDialogOpened(IDialogParameters parameters)

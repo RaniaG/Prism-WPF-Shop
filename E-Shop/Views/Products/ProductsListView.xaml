@@ -14,17 +14,19 @@
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <StackPanel Orientation="Horizontal" Cursor="Hand">
+                       
                         <Image Source="{Binding ImageUrl}" Height="50" Margin="20"/>
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Title}" Style="{StaticResource product-title}" />
-                            <TextBlock Text="{Binding Description}" Style="{StaticResource  textblock-base}" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Description}" Style="{StaticResource  textblock-base}"
+                                       TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
                             <TextBlock Text="{Binding Price,StringFormat={}{0:C} }" Style="{StaticResource  product-price}" />
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
             <b:Interaction.Triggers>
-                <b:EventTrigger EventName="SelectionChanged">
+                <b:EventTrigger EventName="MouseLeftButtonUp">
                     <b:InvokeCommandAction Command="{Binding NavigateToProductCommand}" 
                                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListView},Path=SelectedItem}" />
                 </b:EventTrigger>

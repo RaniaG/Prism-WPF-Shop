@@ -60,6 +60,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Dialogs\MessageDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\MainStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -97,12 +101,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Consts\CartActions.cs" />
+    <Compile Include="Consts\MessageDialogType.cs" />
     <Compile Include="Consts\RegionNames.cs" />
     <Compile Include="Converters\BooleanToVisabilityNegativeConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Dialogs\FilterDialogView.xaml.cs" />
     <Compile Include="Dialogs\FilterDialogViewModel.cs" />
+    <Compile Include="Dialogs\MessageDialogView.xaml.cs">
+      <DependentUpon>MessageDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\MessageDialogViewModel.cs" />
     <Compile Include="Events\SubmitCartEvent.cs" />
     <Compile Include="Events\UpdateCartEvent.cs" />
     <Compile Include="Events\ShowFilterDialogEvent.cs" />
@@ -196,6 +205,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Users.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\error.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\success.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

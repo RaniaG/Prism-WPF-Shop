@@ -2,6 +2,7 @@
 using E_Shop.Core.Events;
 using E_Shop.Dialogs;
 using E_Shop.Entities.Interfaces.Services;
+using E_Shop.Events;
 using E_Shop.Models;
 using E_Shop.Views.Products;
 using Prism;
@@ -64,7 +65,10 @@ namespace E_Shop.ViewModels.Products
         private void InitCommandsAndEvents()
         {
             NavigateToProductCommand = new DelegateCommand<ProductModel>(NavigateToProduct);
-            _eventAggregator.GetEvent<ShowFilterDialogEvent>().Subscribe(ShowFilterDialog);
+            var showFilterEvent = _eventAggregator.GetEvent<ShowFilterDialogEvent>();
+            showFilterEvent.Subscribe(()=> {
+                ShowFilterDialog();
+            });
         }
 
         private void ShowFilterDialog()

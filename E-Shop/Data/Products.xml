@@ -4,7 +4,8 @@
     <Id>1</Id>
     <Title>LG Smart TV 1</Title>
     <Price>500</Price>
-    <Description>lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd</Description>
+    <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, adipisci cupiditate, repellat temporibus odit ut quaerat quis, est esse labore voluptatum laborum. In iure maxime nobis atque, autem nisi tempore.
+    </Description>
     <ImageUrl>../../Assets/Products/tv.jpg</ImageUrl>
     <InStock>true</InStock>
   </Product>

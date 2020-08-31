@@ -31,16 +31,12 @@ namespace E_Shop
         {
             RegisterForNavigation(containerRegistry);
             RegisterDependencyInjectionTypes(containerRegistry);
-        }
-        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
-        {
-            base.ConfigureModuleCatalog(moduleCatalog);
+            RegisterDialogs(containerRegistry);
         }
         private void RegisterDependencyInjectionTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IXMLReader, XMLReader>();
             containerRegistry.RegisterSingleton<IXMLWriter, XMLWriter>();
-
 
             containerRegistry.RegisterSingleton<IUserRepository, UserRepository>();
             containerRegistry.RegisterSingleton<IProductRepository, ProductRepository>();
@@ -59,9 +55,13 @@ namespace E_Shop
             containerRegistry.RegisterForNavigation<ProductsListView, ProductsListViewModel>();
             containerRegistry.RegisterForNavigation<ProductDetailsView, ProductDetailsViewModel>();
             containerRegistry.RegisterForNavigation<CartView, CartViewModel>();
-            containerRegistry.RegisterDialog<FilterDialogView, FilterDialogViewModel>();
         }
-       
+        private void RegisterDialogs(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterDialog<FilterDialogView, FilterDialogViewModel>();
+            containerRegistry.RegisterDialog<MessageDialogView, MessageDialogViewModel>();
+        }
+
 
     }
 }

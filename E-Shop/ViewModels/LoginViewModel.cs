@@ -1,4 +1,6 @@
-﻿using E_Shop.Core.Consts;
+﻿using E_Shop.Consts;
+using E_Shop.Core.Consts;
+using E_Shop.Dialogs;
 using E_Shop.Entities.Interfaces.Services;
 using E_Shop.Views;
 using E_Shop.Views.Products;
@@ -10,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace E_Shop.ViewModels
@@ -20,24 +23,22 @@ namespace E_Shop.ViewModels
         public string Username
         {
             get { return _username; }
-            set { SetProperty(ref _username, value); ErrorMessage = ""; }
+            set { SetProperty(ref _username, value); }
         }
-        private string _errorMessage;
-        public string ErrorMessage
-        {
-            get { return _errorMessage; }
-            set { SetProperty(ref _errorMessage, value); }
-        }
+      
         public DelegateCommand LoginCommand { get; set; }
 
         private readonly IRegionManager _regionManager;
         private readonly IUserService _userService;
+        private readonly IDialogService _dialogService;
 
-        public LoginViewModel(IRegionManager regionManager,IUserService userService)
+
+        public LoginViewModel(IRegionManager regionManager,IUserService userService,IDialogService dialogService)
         {
             //inject login service
             _regionManager = regionManager;
             _userService = userService;
+            _dialogService = dialogService;
 
             LoginCommand = new DelegateCommand(Login, CanLogin);
             LoginCommand.ObservesProperty(() => Username);
@@ -51,16 +52,36 @@ namespace E_Shop.ViewModels
 
         private void Login()
         {
-            var loginSuccess=_userService.Login(Username);
-            if (!loginSuccess)
-                ErrorMessage = "Invalid User";
+            if (!ValidateUsername())
+            {
+                ShowErrorDialog("Invalid username.\nUsername should not contain spaces or special characters.");
+            }
             else
             {
-                _regionManager.RequestNavigate(RegionNames.MainRegion, nameof(HomeContainerView));
-                _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(ProductsListView));
+                var loginSuccess = _userService.Login(Username);
+                if (!loginSuccess)
+                {
+                    ShowErrorDialog("Username not found");
+                }
+                else
+                {
+                    _regionManager.RequestNavigate(RegionNames.MainRegion, nameof(HomeContainerView));
+                    _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(ProductsListView));
+                }
             }
+            
         }
-
+        private bool ValidateUsername()
+        {
+            return !string.IsNullOrEmpty(Username) && Regex.Match(Username, @"^[a-zA-Z0-9]*$").Success;
+        }
+        private void ShowErrorDialog(string errorMessage)
+        {
+            var dialogParams = new DialogParameters();
+            dialogParams.Add("Message", errorMessage);
+            dialogParams.Add("Type", MessageDialogType.Error);
+            _dialogService.ShowDialog(nameof(MessageDialogView), dialogParams,(res)=> { });
+        }
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
 
