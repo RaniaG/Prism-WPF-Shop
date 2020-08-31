@@ -1,4 +1,5 @@
 ﻿using E_Shop.Core.Consts;
+using E_Shop.Entities.Interfaces.Services;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -17,7 +18,7 @@ namespace E_Shop.ViewModels
         public string Username
         {
             get { return _username; }
-            set { SetProperty(ref _username, value); }
+            set { SetProperty(ref _username, value); ErrorMessage = ""; }
         }
         private string _errorMessage;
         public string ErrorMessage
@@ -28,10 +29,13 @@ namespace E_Shop.ViewModels
         public DelegateCommand LoginCommand { get; set; }
 
         private readonly IRegionManager _regionManager;
-        public LoginViewModel(IRegionManager regionManager)
+        private readonly IUserService _userService;
+
+        public LoginViewModel(IRegionManager regionManager,IUserService userService)
         {
             //inject login service
             _regionManager = regionManager;
+            _userService = userService;
 
             LoginCommand = new DelegateCommand(Login, CanLogin);
             LoginCommand.ObservesProperty(() => Username);
@@ -45,13 +49,18 @@ namespace E_Shop.ViewModels
 
         private void Login()
         {
-            //validate username
-            //should return 
-            _regionManager.RequestNavigate(RegionNames.MainRegion, "HomeContainerView");
+            var user=_userService.GetUser(Username);
+            if (user == null)
+                ErrorMessage = "Invalid User";
+            else
+            {
+                _regionManager.RequestNavigate(RegionNames.MainRegion, "HomeContainerView");
+            }
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
+
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

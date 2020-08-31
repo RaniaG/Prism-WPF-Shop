@@ -1,7 +1,8 @@
 ﻿using E_Shop.Core.Consts;
-using E_Shop.Core.Entities;
 using E_Shop.Core.Events;
 using E_Shop.Dialogs;
+using E_Shop.Entities.Interfaces.Services;
+using E_Shop.Models;
 using E_Shop.Views.Products;
 using Prism;
 using Prism.Commands;
@@ -20,53 +21,56 @@ namespace E_Shop.ViewModels.Products
 {
     public class ProductsListViewModel:BindableBase,INavigationAware
     {
-        private ObservableCollection<Product> _products;
-        public ObservableCollection<Product> Products
+        private ObservableCollection<ProductModel> _products;
+        public ObservableCollection<ProductModel> Products
         {
             get { return _products; }
             set { SetProperty(ref _products, value); }
         }
-        private ProductsFilter _productsFilter;
-        public ProductsFilter ProductsFilter
+        private ProductsFilterModel _productsFilter;
+        public ProductsFilterModel ProductsFilterModel
         {
             get { return _productsFilter; }
             set { SetProperty(ref _productsFilter, value); }
         }
 
-        public DelegateCommand<Product> NavigateToProductCommand { get; set; }
+        public DelegateCommand<ProductModel> NavigateToProductCommand { get; set; }
 
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;
         private readonly IDialogService _dialogService;
+        private readonly IProductService _productService;
 
 
-
-        public ProductsListViewModel(IEventAggregator eventAggregator, IRegionManager regionManager,IDialogService dialogService)
+        public ProductsListViewModel(IEventAggregator eventAggregator, IRegionManager regionManager,IDialogService dialogService,
+            IProductService productService)
         {
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
             _dialogService = dialogService;
+            _productService = productService;
 
-            Products = new ObservableCollection<Product>(new List<Product>
-            {
-                new Product { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"},
-                new Product { Id=2, Title="LG Smart TV 2", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"},
-                new Product { Id=3, Title="LG Smart TV 3", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"},
-            });
-            ProductsFilter = new ProductsFilter { CurrentMinValue = 50, CurrentMaxValue = 50, MinValue = 0, MaxValue = 100 };
+            InitData();
             InitCommandsAndEvents();
         }
-
+        private void InitData()
+        {
+            var products = _productService.GetAll(e => true);
+            Products = new ObservableCollection<ProductModel>(products.Select(e=>new ProductModel { 
+                Id=e.Id, Title=e.Title, Description=e.Description, Price=e.Price, InStock=e.InStock, ImageUrl=e.ImageUrl
+            }));
+            ProductsFilterModel = new ProductsFilterModel { CurrentMinValue = 50, CurrentMaxValue = 50, MinValue = 0, MaxValue = 100 };
+        }
         private void InitCommandsAndEvents()
         {
-            NavigateToProductCommand = new DelegateCommand<Product>(NavigateToProduct);
+            NavigateToProductCommand = new DelegateCommand<ProductModel>(NavigateToProduct);
             _eventAggregator.GetEvent<ShowFilterDialogEvent>().Subscribe(ShowFilterDialog);
         }
 
         private void ShowFilterDialog()
         {
             var param = new DialogParameters();
-            param.Add("ProductsFilter", ProductsFilter);
+            param.Add("ProductsFilterModel", ProductsFilterModel);
             _dialogService.ShowDialog(nameof(FilterDialogView), param, (res) => { FilterProducts(res); });
         }
 
@@ -74,13 +78,13 @@ namespace E_Shop.ViewModels.Products
         {
             
             if(res.Result==ButtonResult.OK)
-                ProductsFilter=res.Parameters.GetValue<ProductsFilter>("ProductsFilter");
+                ProductsFilterModel=res.Parameters.GetValue<ProductsFilterModel>("ProductsFilterModel");
         }
 
-        private void NavigateToProduct(Product product)
+        private void NavigateToProduct(ProductModel ProductModel)
         {
             var navigationParams = new NavigationParameters();
-            navigationParams.Add("product", product);
+            navigationParams.Add("ProductModel", ProductModel);
             _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(ProductDetailsView), navigationParams);
         }
 

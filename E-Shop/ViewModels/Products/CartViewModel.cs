@@ -1,5 +1,5 @@
 ﻿using E_Shop.Core.Consts;
-using E_Shop.Core.Entities;
+using E_Shop.Models;
 using E_Shop.Views.Products;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -15,8 +15,8 @@ namespace E_Shop.ViewModels.Products
 {
     public class CartViewModel : BindableBase
     {
-        private ObservableCollection<CartItem> _products;
-        public ObservableCollection<CartItem> Products
+        private ObservableCollection<CartItemModel> _products;
+        public ObservableCollection<CartItemModel> Products
         {
             get { return _products; }
             set
@@ -33,54 +33,29 @@ namespace E_Shop.ViewModels.Products
         }
 
         public DelegateCommand SubmitCommand { get; set; }
-        public DelegateCommand<CartItem> DeleteCommand { get; set; }
+        public DelegateCommand<CartItemModel> DeleteCommand { get; set; }
         private readonly IRegionManager _regionManager;
 
         public CartViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
-            Products = new ObservableCollection<CartItem>(new List<CartItem>
+            Products = new ObservableCollection<CartItemModel>(new List<CartItemModel>
             {
-                new CartItem{
-                    Product=new Product { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
+                new CartItemModel{
+                    Product=new ProductModel { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
                     , Count=1
                 },
-                new CartItem{
-                    Product=new Product { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
+                new CartItemModel{
+                    Product=new ProductModel { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
                     , Count=1
-                },new CartItem{
-                    Product=new Product { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
+                },new CartItemModel{
+                    Product=new ProductModel { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
                     , Count=1
-                },new CartItem{
-                    Product=new Product { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
+                },new CartItemModel{
+                    Product=new ProductModel { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
                     , Count=1
                 },
-                //new CartItem{
-                //    Product=new Product { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
-                //    , Count=1
-                //},new CartItem{
-                //    Product=new Product { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
-                //    , Count=1
-                //},new CartItem{
-                //    Product=new Product { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
-                //    , Count=1
-                //},new CartItem{
-                //    Product=new Product { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
-                //    , Count=1
-                //},new CartItem{
-                //    Product=new Product { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
-                //    , Count=1
-                //},new CartItem{
-                //    Product=new Product { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
-                //    , Count=1
-                //},new CartItem{
-                //    Product=new Product { Id=1, Title="LG Smart TV", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=true, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
-                //    , Count=1
-                //},
-                //new CartItem{
-                //    Product=new Product { Id=1, Title="LG Smart TV 2", Description="lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd" , InStock=false, Price=50, ImageUrl="../../Assets/Products/tv.jpg"}
-                //    , Count=1
-                //}
+               
             });
             CartNotEmpty = true;
             InitCommands();
@@ -90,7 +65,7 @@ namespace E_Shop.ViewModels.Products
         {
             SubmitCommand = new DelegateCommand(Submit, CanSubmit);
             SubmitCommand.ObservesCanExecute(() => CartNotEmpty);
-            DeleteCommand = new DelegateCommand<CartItem>(Delete);
+            DeleteCommand = new DelegateCommand<CartItemModel>(Delete);
 
         }
 
@@ -99,7 +74,7 @@ namespace E_Shop.ViewModels.Products
             return Products.Count > 0;
         }
 
-        private void Delete(CartItem obj)
+        private void Delete(CartItemModel obj)
         {
             Products.Remove(obj);
             if (Products.Count == 0)

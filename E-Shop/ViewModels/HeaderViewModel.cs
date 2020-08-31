@@ -1,7 +1,6 @@
 ﻿using E_Shop.Core.Consts;
-using E_Shop.Core.Entities;
 using E_Shop.Core.Events;
-
+using E_Shop.Models;
 using E_Shop.Views;
 using E_Shop.Views.Products;
 using Prism.Commands;
@@ -69,7 +68,7 @@ namespace E_Shop.ViewModels
             NavigateCommand = new DelegateCommand<string>(Navigate);
         }
 
-        private void UpdateCartItems(CartItem cartEventItem)
+        private void UpdateCartItems(CartItemModel cartEventItem)
         {
             CartItemsCount += cartEventItem.Count;
         }

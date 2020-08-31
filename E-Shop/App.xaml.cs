@@ -1,4 +1,9 @@
-﻿using E_Shop.Dialogs;
+﻿using E_Shop.Business.Services;
+using E_Shop.DAL.Repositories;
+using E_Shop.DAL.XMLReader;
+using E_Shop.Dialogs;
+using E_Shop.Entities.Interfaces.Repositories;
+using E_Shop.Entities.Interfaces.Services;
 using E_Shop.ViewModels;
 using E_Shop.ViewModels.Products;
 using E_Shop.Views;
@@ -24,6 +29,28 @@ namespace E_Shop
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            RegisterForNavigation(containerRegistry);
+            RegisterDependencyInjectionTypes(containerRegistry);
+        }
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+        {
+            base.ConfigureModuleCatalog(moduleCatalog);
+        }
+        private void RegisterDependencyInjectionTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.Register<IXMLReader, XMLReader>();
+
+            containerRegistry.Register<IUserRepository, UserRepository>();
+            containerRegistry.Register<IProductRepository, ProductRepository>();
+
+            containerRegistry.Register<IUserService, UserService>();
+            containerRegistry.Register<IProductService, ProductService>();
+
+
+        }
+
+        private void RegisterForNavigation(IContainerRegistry containerRegistry)
+        {
             containerRegistry.RegisterForNavigation<LoginView, LoginViewModel>();
             containerRegistry.RegisterForNavigation<HomeContainerView>();
             containerRegistry.RegisterForNavigation<ProductsListView, ProductsListViewModel>();
@@ -31,11 +58,6 @@ namespace E_Shop
             containerRegistry.RegisterForNavigation<CartView, CartViewModel>();
             containerRegistry.RegisterDialog<FilterDialogView, FilterDialogViewModel>();
         }
-        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
-        {
-            base.ConfigureModuleCatalog(moduleCatalog);
-        }
-
        
 
     }

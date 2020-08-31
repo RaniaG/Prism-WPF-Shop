@@ -8,9 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace E_Shop.Core.Properties
+namespace E_Shop.Business.Properties
 {
-    using System;
 
 
     /// <summary>
@@ -43,9 +42,9 @@ namespace E_Shop.Core.Properties
         {
             get
             {
-                if (object.ReferenceEquals(resourceMan, null))
+                if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("E_Shop.Core.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("E_Shop.Business.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

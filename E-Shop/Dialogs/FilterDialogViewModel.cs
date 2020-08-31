@@ -1,4 +1,4 @@
-﻿using E_Shop.Core.Entities;
+﻿using E_Shop.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -13,8 +13,8 @@ namespace E_Shop.Dialogs
     public class FilterDialogViewModel : BindableBase, IDialogAware
     {
         public string Title => "Filter Products";
-        private ProductsFilter _productFilter;
-        public ProductsFilter ProductFilter
+        private ProductsFilterModel _productFilter;
+        public ProductsFilterModel ProductFilter
         {
             get { return _productFilter; }
             set { SetProperty(ref _productFilter, value); }
@@ -42,7 +42,7 @@ namespace E_Shop.Dialogs
             else
                 ErrorMessage = "";
             var dialogParams = new DialogParameters();
-            dialogParams.Add("ProductsFilter", ProductFilter);
+            dialogParams.Add("ProductsFilterModel", ProductFilter);
 
             RequestClose?.Invoke(new DialogResult(ButtonResult.OK, dialogParams));
         }
@@ -59,7 +59,7 @@ namespace E_Shop.Dialogs
 
         public void OnDialogOpened(IDialogParameters parameters)
         {
-            ProductFilter = parameters.GetValue<ProductsFilter>("ProductsFilter");
+            ProductFilter = parameters.GetValue<ProductsFilterModel>("ProductsFilterModel");
         }
     }
 }

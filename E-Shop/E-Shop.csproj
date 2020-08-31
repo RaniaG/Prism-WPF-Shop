@@ -96,8 +96,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Consts\CartActions.cs" />
+    <Compile Include="Consts\RegionNames.cs" />
+    <Compile Include="Converters\BooleanToVisabilityNegativeConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Dialogs\FilterDialogView.xaml.cs" />
     <Compile Include="Dialogs\FilterDialogViewModel.cs" />
+    <Compile Include="Events\AddToCartEvent.cs" />
+    <Compile Include="Events\ShowFilterDialogEvent.cs" />
+    <Compile Include="Events\ShowFilterEvent.cs" />
+    <Compile Include="Models\CartItemModel.cs" />
+    <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="Models\ProductsFilterModel.cs" />
     <Compile Include="ViewModels\HeaderViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\Products\CartViewModel.cs" />
@@ -150,11 +161,21 @@
     </PackageReference>
     <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\E-Shop.Core\E-Shop.Core.csproj">
-      <Project>{759f13f2-ba1e-4e94-ac5a-2d05edce0a3b}</Project>
-      <Name>E-Shop.Core</Name>
+    <Resource Include="Data\Cart.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\E-Shop.Business\E-Shop.Business.csproj">
+      <Project>{94c57586-4b27-459d-89e0-1427a8823947}</Project>
+      <Name>E-Shop.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\E-Shop.DAL\E-Shop.DAL.csproj">
+      <Project>{41b512ba-8993-430b-8b78-aa355fb412a8}</Project>
+      <Name>E-Shop.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\E-Shop.Entities\E-Shop.Entities.csproj">
+      <Project>{3549A661-CE99-4F4C-92DB-BE4E25598243}</Project>
+      <Name>E-Shop.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +188,12 @@
     <Resource Include="Assets\Products\tv.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Products.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Users.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

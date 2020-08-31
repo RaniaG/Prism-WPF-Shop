@@ -1,6 +1,6 @@
 ﻿using E_Shop.Core.Consts;
-using E_Shop.Core.Entities;
 using E_Shop.Core.Events;
+using E_Shop.Models;
 using E_Shop.Views.Products;
 using Prism.Commands;
 using Prism.Events;
@@ -16,8 +16,8 @@ namespace E_Shop.ViewModels.Products
 {
     public class ProductDetailsViewModel : BindableBase, INavigationAware
     {
-        private CartItem _productCartItem;
-        public CartItem ProductCartItem
+        private CartItemModel _productCartItem;
+        public CartItemModel ProductCartItem
         {
             get { return _productCartItem; }
             set { SetProperty(ref _productCartItem, value); }
@@ -42,7 +42,7 @@ namespace E_Shop.ViewModels.Products
         }
         private void AddToCart()
         {
-            var eventPayload = new CartItem
+            var eventPayload = new CartItemModel
             {
                 Product = ProductCartItem.Product,
                 Count = ProductCartItem.Count
@@ -77,9 +77,9 @@ namespace E_Shop.ViewModels.Products
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            ProductCartItem = new CartItem()
+            ProductCartItem = new CartItemModel()
             {
-                Product = navigationContext.Parameters.GetValue<Product>("product")
+                Product = navigationContext.Parameters.GetValue<ProductModel>("ProductModel")
             };
         }
     }

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Products>
+  <Product>
+    <Id>1</Id>
+    <Title>LG Smart TV 1</Title>
+    <Price>20.45</Price>
+    <Description>lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd</Description>
+    <ImageUrl>../../Assets/Products/tv.jpg</ImageUrl>
+    <InStock>true</InStock>
+  </Product>
+  <Product>
+    <Id>2</Id>
+    <Title>LG Smart TV 2</Title>
+    <Price>20.45</Price>
+    <Description>lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd</Description>
+    <ImageUrl>../../Assets/Products/tv.jpg</ImageUrl>
+    <InStock>true</InStock>
+  </Product>
+  <Product>
+    <Id>3</Id>
+    <Title>LG Smart TV 3</Title>
+    <Price>20.45</Price>
+    <Description>lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd</Description>
+    <ImageUrl>../../Assets/Products/tv.jpg</ImageUrl>
+    <InStock>true</InStock>
+  </Product>
+</Products>
+

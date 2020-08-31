@@ -1,4 +1,4 @@
-﻿using E_Shop.Core.Entities;
+﻿using E_Shop.Models;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace E_Shop.Core.Events
 {
-    public class AddToCartEvent:PubSubEvent<CartItem>
+    public class AddToCartEvent:PubSubEvent<CartItemModel>
     {
     }
 }

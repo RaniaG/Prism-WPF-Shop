@@ -1,13 +1,12 @@
-﻿using Prism.Mvvm;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Shop.Core.Entities
+namespace E_Shop.Entities
 {
-    public class Product:BindableBase
+    public class Product
     {
         public int Id { get; set; }
         public string Title { get; set; }

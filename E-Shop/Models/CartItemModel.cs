@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Shop.Core.Entities
+namespace E_Shop.Models
 {
-    public class CartItem:BindableBase
+    public class CartItemModel:BindableBase
     {
         private int _count=1;
         public int Count
@@ -16,8 +16,8 @@ namespace E_Shop.Core.Entities
             get { return _count; }
             set { SetProperty(ref _count, value); }
         }
-        private Product _product;
-        public Product Product
+        private ProductModel _product;
+        public ProductModel Product
         {
             get { return _product; }
             set { SetProperty(ref _product, value); }

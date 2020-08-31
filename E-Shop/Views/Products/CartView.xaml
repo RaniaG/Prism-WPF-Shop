@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:prism ="http://prismlibrary.com/"
-             xmlns:converters="clr-namespace:E_Shop.Core.Converters;assembly=E-Shop.Core"
+             xmlns:converters="clr-namespace:E_Shop.Core.Converters"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
