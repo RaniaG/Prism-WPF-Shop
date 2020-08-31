@@ -103,9 +103,10 @@
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Dialogs\FilterDialogView.xaml.cs" />
     <Compile Include="Dialogs\FilterDialogViewModel.cs" />
-    <Compile Include="Events\AddToCartEvent.cs" />
+    <Compile Include="Events\UpdateCartEvent.cs" />
     <Compile Include="Events\ShowFilterDialogEvent.cs" />
     <Compile Include="Events\ShowFilterEvent.cs" />
+    <Compile Include="Models\CartItemEventModel.cs" />
     <Compile Include="Models\CartItemModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\ProductsFilterModel.cs" />

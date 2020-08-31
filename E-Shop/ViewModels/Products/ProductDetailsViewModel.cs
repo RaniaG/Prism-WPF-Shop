@@ -1,5 +1,6 @@
 ﻿using E_Shop.Core.Consts;
 using E_Shop.Core.Events;
+using E_Shop.Entities.Interfaces.Services;
 using E_Shop.Models;
 using E_Shop.Views.Products;
 using Prism.Commands;
@@ -28,11 +29,17 @@ namespace E_Shop.ViewModels.Products
 
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;
+        private readonly IUserService _userService;
+        private readonly ICartService _cartService;
 
-        public ProductDetailsViewModel(IEventAggregator eventAggregator, IRegionManager regionManager)
+
+        public ProductDetailsViewModel(IEventAggregator eventAggregator, IRegionManager regionManager,
+            IUserService userService,ICartService cartService)
         {
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
+            _userService = userService;
+            _cartService = cartService;
             InitCommands();
         }
         private void InitCommands()
@@ -42,12 +49,15 @@ namespace E_Shop.ViewModels.Products
         }
         private void AddToCart()
         {
-            var eventPayload = new CartItemModel
+            var userId = _userService.GetCurrentUser().Id;
+            _cartService.AddToCart(new Entities.CartItem { Count = ProductCartItem.Count, ProductId = ProductCartItem.Product.Id, UserId = userId });
+            var eventPayload = new CartItemEventModel
             {
                 Product = ProductCartItem.Product,
-                Count = ProductCartItem.Count
+                Count = ProductCartItem.Count,
+                Action=CartAction.Add
             };
-            _eventAggregator.GetEvent<AddToCartEvent>().Publish(eventPayload);
+            _eventAggregator.GetEvent<UpdateCartEvent>().Publish(eventPayload);
             _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(ProductsListView));
         }
 

@@ -1,5 +1,6 @@
 ﻿using E_Shop.Core.Consts;
 using E_Shop.Core.Events;
+using E_Shop.Entities.Interfaces.Services;
 using E_Shop.Models;
 using E_Shop.Views;
 using E_Shop.Views.Products;
@@ -41,18 +42,32 @@ namespace E_Shop.ViewModels
 
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;
+        private readonly ICartService _cartService;
+        private readonly IUserService _userService;
 
-        public HeaderViewModel(IEventAggregator eventAggregator, IRegionManager regionManager)
+
+
+        public HeaderViewModel(IEventAggregator eventAggregator, IRegionManager regionManager, ICartService cartService,
+            IUserService userService)
         {
-            Username = "Rania";
-            IsFilterVisible = true;
-
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
+            _cartService = cartService;
+            _userService = userService;
 
             SubscribeToEvents();
             InitCommands();
+            InitData();
         }
+
+        private void InitData()
+        {
+            var user = _userService.GetCurrentUser();
+            Username = user.Name;
+            CartItemsCount = _cartService.GetUserCartItemsCount(user.Id);
+            IsFilterVisible = true;
+        }
+
         private void SubscribeToEvents()
         {
             //Show Filter Event
@@ -60,7 +75,7 @@ namespace E_Shop.ViewModels
             ShowFilterEvent.Subscribe((res) => IsFilterVisible = res);
 
             //Update Cart Event
-            var UpdateCartEvent = _eventAggregator.GetEvent<AddToCartEvent>();
+            var UpdateCartEvent = _eventAggregator.GetEvent<UpdateCartEvent>();
             UpdateCartEvent.Subscribe((res) => UpdateCartItems(res));
         }
         private void InitCommands()
@@ -68,9 +83,17 @@ namespace E_Shop.ViewModels
             NavigateCommand = new DelegateCommand<string>(Navigate);
         }
 
-        private void UpdateCartItems(CartItemModel cartEventItem)
+        private void UpdateCartItems(CartItemEventModel cartEventItem)
         {
-            CartItemsCount += cartEventItem.Count;
+            switch (cartEventItem.Action)
+            {
+                case CartAction.Add:
+                    CartItemsCount += cartEventItem.Count;
+                    break;
+                case CartAction.Remove:
+                    CartItemsCount -= cartEventItem.Count;
+                    break;
+            }
         }
         private void Navigate(string url)
         {

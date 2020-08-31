@@ -10,5 +10,7 @@ namespace E_Shop.Entities.Interfaces.Services
     {
         User GetUser(string username);
         User GetUser(int id);
+        bool Login(string username);
+        User GetCurrentUser();
     }
 }

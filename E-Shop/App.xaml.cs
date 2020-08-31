@@ -38,14 +38,15 @@ namespace E_Shop
         }
         private void RegisterDependencyInjectionTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.Register<IXMLReader, XMLReader>();
+            containerRegistry.RegisterSingleton<IXMLReader, XMLReader>();
 
-            containerRegistry.Register<IUserRepository, UserRepository>();
-            containerRegistry.Register<IProductRepository, ProductRepository>();
+            containerRegistry.RegisterSingleton<IUserRepository, UserRepository>();
+            containerRegistry.RegisterSingleton<IProductRepository, ProductRepository>();
+            containerRegistry.RegisterSingleton<ICartRepository, CartRepository>();
 
-            containerRegistry.Register<IUserService, UserService>();
-            containerRegistry.Register<IProductService, ProductService>();
-
+            containerRegistry.RegisterSingleton<IUserService, UserService>();
+            containerRegistry.RegisterSingleton<IProductService, ProductService>();
+            containerRegistry.RegisterSingleton<ICartService, CartService>();
 
         }
 

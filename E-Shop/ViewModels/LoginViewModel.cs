@@ -49,8 +49,8 @@ namespace E_Shop.ViewModels
 
         private void Login()
         {
-            var user=_userService.GetUser(Username);
-            if (user == null)
+            var loginSuccess=_userService.Login(Username);
+            if (!loginSuccess)
                 ErrorMessage = "Invalid User";
             else
             {

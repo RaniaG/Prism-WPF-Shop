@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace E_Shop.Core.Events
 {
-    public class AddToCartEvent:PubSubEvent<CartItemModel>
+    public class UpdateCartEvent : PubSubEvent<CartItemEventModel>
     {
     }
 }

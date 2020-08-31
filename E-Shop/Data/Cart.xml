@@ -2,6 +2,7 @@
 <Cart>
   <CartItem>
     <ProductId>1</ProductId>
+    <UserId>1</UserId>
     <Count>3</Count>
   </CartItem>
 </Cart>

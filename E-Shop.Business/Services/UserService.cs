@@ -12,10 +12,26 @@ namespace E_Shop.Business.Services
 {
     public class UserService : IUserService
     {
+        private User _currentUser;
         private readonly IUserRepository _userRepository;
         public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
+        }
+        public bool Login(string username)
+        {
+            var user = GetUser(username);
+            if (user == null)
+                return false;
+            else
+            {
+                _currentUser = user;
+                return true;
+            }
+        }
+        public User GetCurrentUser()
+        {
+            return _currentUser;
         }
         public User GetUser(string username)
         {

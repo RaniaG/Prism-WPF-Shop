@@ -11,6 +11,7 @@ namespace E_Shop.Entities.Interfaces.Services
     {
         IEnumerable<CartItemDto> GetUserCart(int userId);
         void AddToCart( CartItem cartItem);
+        int GetUserCartItemsCount(int userId);
         void RemoveFromCart( CartItem cartItem);
         void SubmitCart();
     }
