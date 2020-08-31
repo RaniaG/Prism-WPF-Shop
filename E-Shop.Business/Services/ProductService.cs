@@ -22,7 +22,7 @@ namespace E_Shop.Business.Services
 
         public IEnumerable<Product> GetAll(Func<Product, bool> predicate)
         {
-            return _productRepository.GetAll(predicate);
+            return _productRepository.GetAll(predicate).OrderBy(e => e.Price);
         }
 
         public Product GetProduct(int id)

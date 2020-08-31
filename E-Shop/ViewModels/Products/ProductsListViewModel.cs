@@ -50,7 +50,6 @@ namespace E_Shop.ViewModels.Products
             _dialogService = dialogService;
             _productService = productService;
 
-            InitData();
             InitCommandsAndEvents();
         }
         private void InitData()
@@ -59,7 +58,8 @@ namespace E_Shop.ViewModels.Products
             Products = new ObservableCollection<ProductModel>(products.Select(e=>new ProductModel { 
                 Id=e.Id, Title=e.Title, Description=e.Description, Price=e.Price, InStock=e.InStock, ImageUrl=e.ImageUrl
             }));
-            ProductsFilterModel = new ProductsFilterModel { CurrentMinValue = 50, CurrentMaxValue = 50, MinValue = 0, MaxValue = 100 };
+            var maxPrice = (int)products.Max(e => e.Price);
+            ProductsFilterModel = new ProductsFilterModel { CurrentMinValue = 0, CurrentMaxValue = maxPrice, MinValue = 0, MaxValue = maxPrice };
         }
         private void InitCommandsAndEvents()
         {
@@ -70,15 +70,26 @@ namespace E_Shop.ViewModels.Products
         private void ShowFilterDialog()
         {
             var param = new DialogParameters();
-            param.Add("ProductsFilterModel", ProductsFilterModel);
+            param.Add("ProductsFilterModel", ProductsFilterModel.Clone());
             _dialogService.ShowDialog(nameof(FilterDialogView), param, (res) => { FilterProducts(res); });
         }
 
         private void FilterProducts(IDialogResult res)
         {
-            
             if(res.Result==ButtonResult.OK)
+            {
                 ProductsFilterModel=res.Parameters.GetValue<ProductsFilterModel>("ProductsFilterModel");
+                var products = _productService.GetAll(e => e.Price>= ProductsFilterModel.CurrentMinValue&&e.Price<= ProductsFilterModel.CurrentMaxValue);
+                Products = new ObservableCollection<ProductModel>(products.Select(e => new ProductModel
+                {
+                    Id = e.Id,
+                    Title = e.Title,
+                    Description = e.Description,
+                    Price = e.Price,
+                    InStock = e.InStock,
+                    ImageUrl = e.ImageUrl
+                }));
+            }
         }
 
         private void NavigateToProduct(ProductModel ProductModel)
@@ -91,7 +102,7 @@ namespace E_Shop.ViewModels.Products
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _eventAggregator.GetEvent<ShowFilterEvent>().Publish(true);
-
+            InitData();
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

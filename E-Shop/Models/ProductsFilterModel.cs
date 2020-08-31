@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace E_Shop.Models
 {
-    public class ProductsFilterModel:BindableBase
+    public class ProductsFilterModel:BindableBase,ICloneable
     {
         private int minValue;
         public int MinValue
@@ -32,6 +32,11 @@ namespace E_Shop.Models
         {
             get { return currentMaxValue; }
             set { SetProperty(ref currentMaxValue, value); }
+        }
+
+        public object Clone()
+        {
+            return new ProductsFilterModel() { MinValue = this.MinValue, MaxValue = this.MaxValue, CurrentMaxValue = this.CurrentMaxValue, CurrentMinValue = this.CurrentMinValue };
         }
     }
 }

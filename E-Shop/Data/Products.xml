@@ -3,7 +3,7 @@
   <Product>
     <Id>1</Id>
     <Title>LG Smart TV 1</Title>
-    <Price>20.45</Price>
+    <Price>500</Price>
     <Description>lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd</Description>
     <ImageUrl>../../Assets/Products/tv.jpg</ImageUrl>
     <InStock>true</InStock>
@@ -19,7 +19,7 @@
   <Product>
     <Id>3</Id>
     <Title>LG Smart TV 3</Title>
-    <Price>20.45</Price>
+    <Price>25</Price>
     <Description>lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd</Description>
     <ImageUrl>../../Assets/Products/tv.jpg</ImageUrl>
     <InStock>true</InStock>
