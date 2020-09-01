@@ -15,19 +15,8 @@ namespace E_Shop.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        private readonly IRegionManager _regionManager;
-        public ShellWindowViewModel(IRegionManager regionManager)
+        public ShellWindowViewModel()
         {
-            _regionManager = regionManager;
-            RegisterViewsWithRegions();
-        }
-        private void RegisterViewsWithRegions()
-        {
-            _regionManager.RegisterViewWithRegion(RegionNames.HeaderRegion, typeof(HeaderView));
-            _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(LoginView));
-            _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(HomeContainerView));
-            _regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ProductsListView));
-
         }
     }
 }

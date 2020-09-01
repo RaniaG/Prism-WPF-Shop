@@ -1,4 +1,5 @@
 ﻿using E_Shop.Business.Services;
+using E_Shop.Core.Consts;
 using E_Shop.DAL.Repositories;
 using E_Shop.DAL.XMLReader;
 using E_Shop.Dialogs;
@@ -27,11 +28,23 @@ namespace E_Shop
             return new ShellWindow();
         }
 
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            var regionManager= Container.Resolve<IRegionManager>();
+
+            regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(LoginView));
+            regionManager.RegisterViewWithRegion(RegionNames.HeaderRegion, typeof(HeaderView));
+            regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ProductsListView));
+        }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             RegisterForNavigation(containerRegistry);
             RegisterDependencyInjectionTypes(containerRegistry);
             RegisterDialogs(containerRegistry);
+
+
         }
         private void RegisterDependencyInjectionTypes(IContainerRegistry containerRegistry)
         {
