@@ -77,7 +77,7 @@ namespace E_Shop.ViewModels.Products
                 return new CartItemModel
                 {
                     Count = e.Count,
-                    Product = new ProductModel { Id = e.Product.Id, Title = e.Product.Title, Description = e.Product.Description, Price = e.Product.Price*e.Count, InStock = e.Product.InStock, ImageUrl = e.Product.ImageUrl }
+                    Product = new ProductModel { Id = e.Product.Id, Title = e.Product.Title, Description = e.Product.Description, Price = e.Product.Price*e.Count, InStock = e.Product.InStock, ImageUrl = e.Product.ImageUrl, Images=e.Product.Images }
                 };
             }));
             CartNotEmpty = userCart.Any();
@@ -86,14 +86,14 @@ namespace E_Shop.ViewModels.Products
         private void InitCommands()
         {
             SubmitCommand = new DelegateCommand(Submit, CanSubmit);
-            SubmitCommand.ObservesCanExecute(() => CartNotEmpty);
+            SubmitCommand.ObservesProperty(() => CartNotEmpty);
             DeleteCommand = new DelegateCommand<CartItemModel>(Delete);
 
         }
 
         private bool CanSubmit()
         {
-            return Products.Count > 0;
+            return Products!=null&&Products.Count > 0 && Products.FirstOrDefault(e => !e.Product.InStock) == null ;
         }
 
         private void Delete(CartItemModel obj)
@@ -111,6 +111,7 @@ namespace E_Shop.ViewModels.Products
                 Action = CartAction.Remove
             };
             _eventAggregator.GetEvent<UpdateCartEvent>().Publish(eventPayload);
+            SubmitCommand.RaiseCanExecuteChanged();
         }
 
         private void Submit()

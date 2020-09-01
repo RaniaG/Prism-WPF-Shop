@@ -35,7 +35,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DockPanel Background="Transparent">
-                                <Image DockPanel.Dock="Left" Source="{Binding Product.ImageUrl}" Height="100" Margin="10 10"/>
+                                <Image DockPanel.Dock="Left" Source="{Binding Product.Images[0]}" Height="100" Margin="10 10"/>
                                 <TextBlock DockPanel.Dock="Top" Style="{StaticResource product-title}" Text="{Binding Product.Title}"/>
                                 <TextBlock DockPanel.Dock="Top" Style="{StaticResource textblock-success}"
                                            Text="In Stock" Visibility="{Binding Product.InStock, Converter={StaticResource boolToVisConverter}}"/>

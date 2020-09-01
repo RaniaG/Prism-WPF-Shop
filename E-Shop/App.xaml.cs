@@ -1,7 +1,7 @@
 ﻿using E_Shop.Business.Services;
 using E_Shop.Core.Consts;
 using E_Shop.DAL.Repositories;
-using E_Shop.DAL.XMLReader;
+using E_Shop.DAL.Services;
 using E_Shop.Dialogs;
 using E_Shop.Entities.Interfaces.Repositories;
 using E_Shop.Entities.Interfaces.Services;

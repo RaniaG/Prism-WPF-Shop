@@ -1,5 +1,6 @@
 ﻿using E_Shop.DAL.Consts;
-using E_Shop.DAL.XMLReader;
+using E_Shop.DAL.Entities;
+using E_Shop.DAL.Services;
 using E_Shop.Entities;
 using E_Shop.Entities.Interfaces.Repositories;
 using System;
@@ -23,7 +24,9 @@ namespace E_Shop.DAL.Repositories
 
         public void SaveCartItems(IEnumerable<CartItem> cartItems)
         {
-            _xMLWriter.Append(DataFilesPaths.Orders, cartItems, "Order");
+            var orders = _xMLReader.Read<OrdersXml>(DataFilesPaths.Orders);
+            orders.Orders.Add(new Order { OrderItems = cartItems.ToList() });
+            _xMLWriter.Write(DataFilesPaths.Orders,orders);
         }
 
     }

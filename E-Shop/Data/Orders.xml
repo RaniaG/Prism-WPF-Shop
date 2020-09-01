@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Orders>
-  <Order xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<Orders xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Order>
     <OrderItem>
       <UserId>1</UserId>
       <ProductId>1</ProductId>
@@ -8,89 +8,16 @@
     </OrderItem>
   </Order>
   <Order>
-    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <UserId>1</UserId>
-      <ProductId>1</ProductId>
-      <Count>1</Count>
-    </OrderItem>
-  </Order>
-  <Order>
-    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <UserId>1</UserId>
+    <OrderItem>
+      <UserId>2</UserId>
       <ProductId>3</ProductId>
       <Count>2</Count>
     </OrderItem>
-    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <UserId>1</UserId>
-      <ProductId>2</ProductId>
-      <Count>1</Count>
-    </OrderItem>
   </Order>
   <Order>
-    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <UserId>1</UserId>
-      <ProductId>1</ProductId>
-      <Count>3</Count>
-    </OrderItem>
-  </Order>
-  <Order>
-    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <UserId>1</UserId>
-      <ProductId>1</ProductId>
-      <Count>1</Count>
-    </OrderItem>
-  </Order>
-  <Order>
-    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <UserId>2</UserId>
-      <ProductId>2</ProductId>
-      <Count>3</Count>
-    </OrderItem>
-  </Order>
-  <Order>
-    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <UserId>2</UserId>
-      <ProductId>2</ProductId>
-      <Count>3</Count>
-    </OrderItem>
-  </Order>
-  <Order>
-    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <OrderItem>
       <UserId>1</UserId>
       <ProductId>3</ProductId>
-      <Count>1</Count>
-    </OrderItem>
-  </Order>
-  <Order>
-    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <UserId>2</UserId>
-      <ProductId>1</ProductId>
-      <Count>1</Count>
-    </OrderItem>
-  </Order>
-  <Order>
-    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <UserId>1</UserId>
-      <ProductId>2</ProductId>
-      <Count>2</Count>
-    </OrderItem>
-  </Order>
-  <Order>
-    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <UserId>1</UserId>
-      <ProductId>2</ProductId>
-      <Count>1</Count>
-      <MyList>
-        <string>Rania</string>
-        <string>Gamal</string>
-        <string>Mohamed</string>
-      </MyList>
-    </OrderItem>
-  </Order>
-  <Order>
-    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <UserId>2</UserId>
-      <ProductId>2</ProductId>
       <Count>1</Count>
     </OrderItem>
   </Order>

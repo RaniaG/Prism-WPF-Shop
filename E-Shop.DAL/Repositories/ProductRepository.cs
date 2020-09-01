@@ -1,5 +1,6 @@
 ﻿using E_Shop.DAL.Consts;
-using E_Shop.DAL.XMLReader;
+using E_Shop.DAL.Entities;
+using E_Shop.DAL.Services;
 using E_Shop.Entities;
 using E_Shop.Entities.Interfaces.Repositories;
 using System;
@@ -21,7 +22,8 @@ namespace E_Shop.DAL.Repositories
         }
         private void ReadAll()
         {
-            _products = _xMLReader.Read<Product>(DataFilesPaths.Products);
+            var result = _xMLReader.Read<ProductsXml>(DataFilesPaths.Products);
+            _products = result.Products;
         }
         public IEnumerable<Product> GetAll(Func<Product, bool> predicate)
         {

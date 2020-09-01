@@ -1,5 +1,6 @@
 ﻿using E_Shop.DAL.Consts;
-using E_Shop.DAL.XMLReader;
+using E_Shop.DAL.Entities;
+using E_Shop.DAL.Services;
 using E_Shop.Entities;
 using E_Shop.Entities.Interfaces.Repositories;
 using System;
@@ -22,7 +23,8 @@ namespace E_Shop.DAL.Repositories
 
         private void ReadAll()
         {
-            _users = _xMLReader.Read<User>(DataFilesPaths.Users);
+            var result= _xMLReader.Read<UsersXml>(DataFilesPaths.Users);
+            _users = result.Users;
         }
 
         public User GetUser(string username)

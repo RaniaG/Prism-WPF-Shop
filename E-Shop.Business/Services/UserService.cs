@@ -1,5 +1,4 @@
-﻿using E_Shop.DAL.XMLReader;
-using E_Shop.Entities;
+﻿using E_Shop.Entities;
 using E_Shop.Entities.Interfaces.Repositories;
 using E_Shop.Entities.Interfaces.Services;
 using System;

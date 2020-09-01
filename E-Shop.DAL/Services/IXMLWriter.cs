@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Shop.DAL.XMLReader
+namespace E_Shop.DAL.Services
 {
     public interface IXMLWriter
     {
-        void Append<T>(string filePath, IEnumerable<T> items, string itemsParentNode = null);
+        void Write<T>(string filePath, T root);
     }
 }

@@ -2,20 +2,14 @@
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace E_Shop.DAL.XMLReader
+namespace E_Shop.DAL.Services
 {
     public class XMLReader:IXMLReader
     {
-        public IEnumerable<T> Read<T>(string filePath)
+        public T Read<T>(string filePath)
         {
             XElement xelement = XElement.Load(filePath);
-            IEnumerable<XElement> elements = xelement.Elements();
-            List<T> result = new List<T>();
-            foreach (var element in elements)
-            {
-                result.Add(DeSerializer<T>(element));
-            }
-            return result;
+            return DeSerializer<T>(xelement);
         }
         private T DeSerializer<T>(XElement element)
         {

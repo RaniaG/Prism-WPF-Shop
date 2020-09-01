@@ -55,6 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Consts\DataFilesPaths.cs" />
+    <Compile Include="Entities\OrdersXml.cs" />
+    <Compile Include="Entities\ProductsXml.cs" />
+    <Compile Include="Entities\UsersXml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -71,10 +74,10 @@
     <Compile Include="Repositories\CartRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="XMLReader\IXMLReader.cs" />
-    <Compile Include="XMLReader\IXMLWriter.cs" />
-    <Compile Include="XMLReader\XMLReader.cs" />
-    <Compile Include="XMLReader\XMLWriter.cs" />
+    <Compile Include="Services\IXMLReader.cs" />
+    <Compile Include="Services\IXMLWriter.cs" />
+    <Compile Include="Services\XMLReader.cs" />
+    <Compile Include="Services\XMLWriter.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
