@@ -26,8 +26,24 @@ namespace E_Shop.ViewModels.Products
             get { return _productCartItem; }
             set { SetProperty(ref _productCartItem, value); }
         }
+        private string _selectedImageUrl="";
+        public string SelectedImageUrl
+        {
+            get { return _selectedImageUrl; }
+            set { SetProperty(ref _selectedImageUrl, value); }
+        }
+        private int _selecteImageIndex;
+        public int SelectedImageIndex
+        {
+            get { return _selecteImageIndex; }
+            set { SetProperty(ref _selecteImageIndex, value); }
+        }
         public DelegateCommand<string> UpdateCountCommand { get; set; }
         public DelegateCommand AddToCartCommand { get; set; }
+        public DelegateCommand NextImageCommand { get; set; }
+        public DelegateCommand PreviousImageCommand { get; set; }
+
+
 
 
         private readonly IEventAggregator _eventAggregator;
@@ -52,7 +68,44 @@ namespace E_Shop.ViewModels.Products
         {
             UpdateCountCommand = new DelegateCommand<string>(UpdateCount);
             AddToCartCommand = new DelegateCommand(AddToCart);
+            NextImageCommand = new DelegateCommand(()=> { ChangeImage("Right"); },()=> { return CanChangeImage("Right"); });
+            PreviousImageCommand = new DelegateCommand(() => { ChangeImage("Left");  }, () => { return CanChangeImage("Left"); });
         }
+
+        private bool CanChangeImage(string arg)
+        {
+            var result = false;
+            if (ProductCartItem == null)
+                return result;
+            switch (arg)
+            {
+                case "Right":
+                    result= SelectedImageIndex < ProductCartItem.Product.Images.Count - 1;
+                    break;
+                case "Left":
+                    result= SelectedImageIndex > 0;
+                    break;
+            }
+            return result;
+        }
+
+        private void ChangeImage(string obj)
+        {
+            switch (obj)
+            {
+                case "Right":
+                    SelectedImageIndex++;
+                    break;
+                case "Left":
+                    SelectedImageIndex--;
+                    break;
+            }
+            SelectedImageUrl =ProductCartItem.Product.Images[SelectedImageIndex];
+            PreviousImageCommand.RaiseCanExecuteChanged();
+            NextImageCommand.RaiseCanExecuteChanged();
+
+        }
+
         private void AddToCart()
         {
             var userId = _userService.GetCurrentUser().Id;
@@ -89,7 +142,7 @@ namespace E_Shop.ViewModels.Products
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
-            return true;
+            return false;
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
@@ -103,6 +156,8 @@ namespace E_Shop.ViewModels.Products
             {
                 Product = navigationContext.Parameters.GetValue<ProductModel>("ProductModel")
             };
+            SelectedImageUrl = ProductCartItem.Product.Images.Any()? ProductCartItem.Product.Images[SelectedImageIndex]:"";
+            NextImageCommand.RaiseCanExecuteChanged();
         }
     }
 }

@@ -8,10 +8,20 @@
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource btn-primary}" x:Key="btn-arrow">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <StackPanel Margin="30">
             <TextBlock Text="{Binding ProductCartItem.Product.Title}" Style="{StaticResource product-title}"/>
-            <Image Source="{Binding ProductCartItem.Product.ImageUrl}" Height="200" Margin="0 20"/>
+            <DockPanel>
+                <Button  Command="{Binding PreviousImageCommand}" DockPanel.Dock="Left" FontFamily="Segoe UI Symbol" Content="&#xE112;" Style="{StaticResource btn-arrow}"/>
+                <Button Command="{Binding NextImageCommand}" DockPanel.Dock="Right" FontFamily="Segoe UI Symbol" Content="&#xE111;" Style="{StaticResource btn-arrow}" />
+                <Image Source="{Binding SelectedImageUrl}" Height="200" Margin="0 20"/>
+            </DockPanel>
             <TextBlock Text="{Binding ProductCartItem.Product.Description}" Style="{StaticResource textblock-base}"/>
             <TextBlock Text="{Binding ProductCartItem.Product.Price, StringFormat={}{0:C}}" Style="{StaticResource product-price}"/>
             <Grid>

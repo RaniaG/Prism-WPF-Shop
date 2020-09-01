@@ -14,8 +14,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <StackPanel Orientation="Horizontal" Cursor="Hand">
-                       
-                        <Image Source="{Binding ImageUrl}" Height="50" Margin="20"/>
+                        <Image Source="{Binding Images[0]}" Width="100"  Height="100" Margin="20"/>
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Title}" Style="{StaticResource product-title}" />
                             <TextBlock Text="{Binding Description}" Style="{StaticResource  textblock-base}"

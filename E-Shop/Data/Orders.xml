@@ -61,4 +61,30 @@
       <Count>1</Count>
     </OrderItem>
   </Order>
+  <Order>
+    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <UserId>2</UserId>
+      <ProductId>1</ProductId>
+      <Count>1</Count>
+    </OrderItem>
+  </Order>
+  <Order>
+    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <UserId>1</UserId>
+      <ProductId>2</ProductId>
+      <Count>2</Count>
+    </OrderItem>
+  </Order>
+  <Order>
+    <OrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <UserId>1</UserId>
+      <ProductId>2</ProductId>
+      <Count>1</Count>
+      <MyList>
+        <string>Rania</string>
+        <string>Gamal</string>
+        <string>Mohamed</string>
+      </MyList>
+    </OrderItem>
+  </Order>
 </Orders>

@@ -6,15 +6,23 @@
     <Price>500</Price>
     <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, adipisci cupiditate, repellat temporibus odit ut quaerat quis, est esse labore voluptatum laborum. In iure maxime nobis atque, autem nisi tempore.
     </Description>
-    <ImageUrl>../../Assets/Products/tv.jpg</ImageUrl>
-    <InStock>true</InStock>
+    <InStock>false</InStock>
+    <Images>
+      <string>../../Assets/Products/tv.jpg</string>
+      <string>../../Assets/Products/tv2.jpg</string>
+      <string>../../Assets/Products/tv3.jpg</string>
+      <string>../../Assets/Products/tv4.jpg</string>
+    </Images>
   </Product>
   <Product>
     <Id>2</Id>
     <Title>LG Smart TV 2</Title>
     <Price>20.45</Price>
     <Description>lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd</Description>
-    <ImageUrl>../../Assets/Products/tv.jpg</ImageUrl>
+    <Images>
+      <string>../../Assets/Products/tv4.jpg</string>
+      <string>../../Assets/Products/tv.jpg</string>
+    </Images>
     <InStock>true</InStock>
   </Product>
   <Product>
@@ -22,8 +30,19 @@
     <Title>LG Smart TV 3</Title>
     <Price>25</Price>
     <Description>lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd</Description>
-    <ImageUrl>../../Assets/Products/tv.jpg</ImageUrl>
+    <Images>
+      <string>../../Assets/Products/tv3.jpg</string>
+    </Images>
     <InStock>true</InStock>
+  </Product>
+  <Product>
+    <Id>3</Id>
+    <Title>LG Smart TV 4</Title>
+    <Price>250</Price>
+    <Description>lsdfsdfsssssssssssssssssssssdfsdfsdfsdfsddddddddddddddddddddddddddddddddddddddddddddddddddd</Description>
+    <Images>
+    </Images>
+    <InStock>false</InStock>
   </Product>
 </Products>
 

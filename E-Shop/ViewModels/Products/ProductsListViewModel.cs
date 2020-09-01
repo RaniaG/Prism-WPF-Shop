@@ -1,6 +1,7 @@
 ﻿using E_Shop.Core.Consts;
 using E_Shop.Core.Events;
 using E_Shop.Dialogs;
+using E_Shop.Entities;
 using E_Shop.Entities.Interfaces.Services;
 using E_Shop.Events;
 using E_Shop.Models;
@@ -56,9 +57,7 @@ namespace E_Shop.ViewModels.Products
         private void InitData()
         {
             var products = _productService.GetAll(e => true);
-            Products = new ObservableCollection<ProductModel>(products.Select(e=>new ProductModel { 
-                Id=e.Id, Title=e.Title, Description=e.Description, Price=e.Price, InStock=e.InStock, ImageUrl=e.ImageUrl
-            }));
+            Products = new ObservableCollection<ProductModel>(products.Select(e=> MapProduct(e)));
             var maxPrice = (int)products.Max(e => e.Price);
             ProductsFilterModel = new ProductsFilterModel { CurrentMinValue = 0, CurrentMaxValue = maxPrice, MinValue = 0, MaxValue = maxPrice };
         }
@@ -84,15 +83,7 @@ namespace E_Shop.ViewModels.Products
             {
                 ProductsFilterModel=res.Parameters.GetValue<ProductsFilterModel>("ProductsFilterModel");
                 var products = _productService.GetAll(e => e.Price>= ProductsFilterModel.CurrentMinValue&&e.Price<= ProductsFilterModel.CurrentMaxValue);
-                Products = new ObservableCollection<ProductModel>(products.Select(e => new ProductModel
-                {
-                    Id = e.Id,
-                    Title = e.Title,
-                    Description = e.Description,
-                    Price = e.Price,
-                    InStock = e.InStock,
-                    ImageUrl = e.ImageUrl
-                }));
+                Products = new ObservableCollection<ProductModel>(products.Select(e => MapProduct(e)));
             }
         }
 
@@ -118,6 +109,19 @@ namespace E_Shop.ViewModels.Products
         {
             _eventAggregator.GetEvent<ShowFilterEvent>().Publish(false);
 
+        }
+        private ProductModel MapProduct(Product product)
+        {
+            return new ProductModel
+            {
+                Id = product.Id,
+                Title = product.Title,
+                Description = product.Description,
+                Price = product.Price,
+                InStock = product.InStock,
+                ImageUrl = product.ImageUrl,
+                Images=product.Images
+            };
         }
     }
 }
