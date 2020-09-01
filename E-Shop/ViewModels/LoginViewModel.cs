@@ -2,6 +2,7 @@
 using E_Shop.Core.Consts;
 using E_Shop.Dialogs;
 using E_Shop.Entities.Interfaces.Services;
+using E_Shop.Services;
 using E_Shop.Views;
 using E_Shop.Views.Products;
 using Prism.Commands;
@@ -31,14 +32,18 @@ namespace E_Shop.ViewModels
         private readonly IRegionManager _regionManager;
         private readonly IUserService _userService;
         private readonly IDialogService _dialogService;
+        private readonly IMessageResourceManager _messageResourceManager;
 
 
-        public LoginViewModel(IRegionManager regionManager,IUserService userService,IDialogService dialogService)
+
+        public LoginViewModel(IRegionManager regionManager,IUserService userService,IDialogService dialogService,
+            IMessageResourceManager messageResourceManager)
         {
             //inject login service
             _regionManager = regionManager;
             _userService = userService;
             _dialogService = dialogService;
+            _messageResourceManager = messageResourceManager;
 
             LoginCommand = new DelegateCommand(Login, CanLogin);
             LoginCommand.ObservesProperty(() => Username);
@@ -54,14 +59,15 @@ namespace E_Shop.ViewModels
         {
             if (!ValidateUsername())
             {
-                ShowErrorDialog("Invalid username.\nUsername should not contain spaces or special characters.");
+                var error = _messageResourceManager.GetMessage(Messages.NameValidationError);
+                ShowErrorDialog(error);
             }
             else
             {
                 var loginSuccess = _userService.Login(Username);
                 if (!loginSuccess)
                 {
-                    ShowErrorDialog("Username not found");
+                    ShowErrorDialog(_messageResourceManager.GetMessage(Messages.UserNotFound));
                 }
                 else
                 {

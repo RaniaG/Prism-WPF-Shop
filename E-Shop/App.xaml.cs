@@ -5,6 +5,7 @@ using E_Shop.DAL.XMLReader;
 using E_Shop.Dialogs;
 using E_Shop.Entities.Interfaces.Repositories;
 using E_Shop.Entities.Interfaces.Services;
+using E_Shop.Services;
 using E_Shop.ViewModels;
 using E_Shop.ViewModels.Products;
 using E_Shop.Views;
@@ -58,6 +59,8 @@ namespace E_Shop
             containerRegistry.RegisterSingleton<IUserService, UserService>();
             containerRegistry.RegisterSingleton<IProductService, ProductService>();
             containerRegistry.RegisterSingleton<ICartService, CartService>();
+
+            containerRegistry.RegisterSingleton<IMessageResourceManager, MessageResourceManager>();
 
         }
 

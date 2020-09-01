@@ -4,6 +4,7 @@ using E_Shop.Core.Events;
 using E_Shop.Dialogs;
 using E_Shop.Entities.Interfaces.Services;
 using E_Shop.Models;
+using E_Shop.Services;
 using E_Shop.Views.Products;
 using Prism.Commands;
 using Prism.Events;
@@ -51,17 +52,21 @@ namespace E_Shop.ViewModels.Products
         private readonly IUserService _userService;
         private readonly ICartService _cartService;
         private readonly IDialogService _dialogService;
+        private readonly IMessageResourceManager _messageResourceManager;
+
 
 
 
         public ProductDetailsViewModel(IEventAggregator eventAggregator, IRegionManager regionManager,
-            IUserService userService,ICartService cartService,IDialogService dialogService)
+            IUserService userService,ICartService cartService,IDialogService dialogService,
+            IMessageResourceManager messageResourceManager)
         {
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
             _userService = userService;
             _cartService = cartService;
             _dialogService = dialogService;
+            _messageResourceManager = messageResourceManager;
             InitCommands();
         }
         private void InitCommands()
@@ -120,7 +125,7 @@ namespace E_Shop.ViewModels.Products
             _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(ProductsListView));
             var dialogParams = new DialogParameters();
 
-            dialogParams.Add("Message", "Cart updated Successfully");
+            dialogParams.Add("Message", _messageResourceManager.GetMessage(Messages.CartUpdateSuccess));
             dialogParams.Add("Type", MessageDialogType.Success);
             _dialogService.ShowDialog(nameof(MessageDialogView), dialogParams, (res) => { });
 
