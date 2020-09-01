@@ -10,8 +10,8 @@
              xmlns:converters="clr-namespace:E_Shop.Core.Converters"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
-        <converters:BooleanToVisibilityConverter x:Key="boolToVisConverter"></converters:BooleanToVisibilityConverter>
-        <converters:BooleanToVisabilityNegativeConverter x:Key="boolToVisNegConverter"></converters:BooleanToVisabilityNegativeConverter>
+        <converters:MessageDialogTypeToStringConverter x:Key="typeToStringConv" Success="/Assets/success.png" Error="/Assets/error.png"></converters:MessageDialogTypeToStringConverter>
+        <converters:MessageDialogTypeToStyleConverter x:Key="typeToStyleConv" Success="textblock-success" Error="textblock-error"></converters:MessageDialogTypeToStyleConverter>
     </UserControl.Resources>
         <prism:Dialog.WindowStyle>
             <Style TargetType="Window">
@@ -23,9 +23,8 @@
         </prism:Dialog.WindowStyle>
     <Grid Margin="30">
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <Image Source="/Assets/error.png" Height="50" Width="50" Visibility="{Binding IsError,Converter={StaticResource boolToVisConverter}}"/>
-            <Image Source="/Assets/success.png" Height="50" Width="50" Visibility="{Binding IsError,Converter={StaticResource boolToVisNegConverter}}"/>
-            <TextBlock Text="{Binding Message}" Margin="0 20"  Style="{StaticResource textblock-base}" Foreground="{Binding Color}" TextWrapping="Wrap"/>
+            <Image Source="{Binding Type,Converter={StaticResource typeToStringConv}}" Height="50" Width="50"/>
+            <TextBlock Text="{Binding Message}" Margin="0 20" Style="{Binding Type,Converter={StaticResource typeToStyleConv}}" TextWrapping="Wrap"/>
             <Button Content="OK"  Style="{StaticResource btn-primary}" Command="{Binding CloseMessageCommand}"/>
         </StackPanel>
     </Grid>

@@ -14,24 +14,15 @@ namespace E_Shop.Dialogs
     public class MessageDialogViewModel : BindableBase, IDialogAware
     {
         public string Title { get; set; }
-        public MessageDialogType Type { get; set; }
+        private MessageDialogType _type;
+        public MessageDialogType Type
+        {
+            get { return _type; }
+            set { SetProperty(ref _type, value); }
+        }
 
         public event Action<IDialogResult> RequestClose;
-
-        private bool _isError;
-        public bool IsError
-        {
-            get { return _isError; }
-            set { SetProperty(ref _isError, value); }
-        }
-
-        private Brush _color;
-        public Brush Color
-        {
-            get { return _color; }
-            set { SetProperty(ref _color, value); }
-        }
-
+      
         private string _message;
         public string Message
         {
@@ -61,13 +52,9 @@ namespace E_Shop.Dialogs
             {
                 case MessageDialogType.Error:
                     Title = "Error";
-                    Color = Brushes.Red;
-                    IsError = true;
                     break;
                 case MessageDialogType.Success:
                     Title = "Success";
-                    Color = Brushes.Green;
-                    IsError = false;
                     break;
             }
         }

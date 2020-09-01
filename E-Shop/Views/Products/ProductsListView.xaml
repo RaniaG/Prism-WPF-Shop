@@ -10,18 +10,23 @@
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <ListView ItemsSource="{Binding Products}">
+        <ListView ItemsSource="{Binding Products}" >
             <ListView.ItemTemplate>
                 <DataTemplate >
-                    <StackPanel Orientation="Horizontal" Cursor="Hand">
-                        <Image Source="{Binding Images[0]}" Width="100"  Height="100" Margin="20"/>
-                        <StackPanel Orientation="Vertical">
+                    <Grid Cursor="Hand" Width="{Binding RelativeSource={RelativeSource AncestorType=Window},Path=ActualWidth}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="{Binding Images[0]}" MinWidth="100"  MinHeight="100"/>
+                        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="30 0">
                             <TextBlock Text="{Binding Title}" Style="{StaticResource product-title}" />
                             <TextBlock Text="{Binding Description}" Style="{StaticResource  textblock-base}"
-                                       TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
+                                       Width="{Binding RelativeSource={RelativeSource AncestorType=StackPanel},Path=ActualWidth}"
+                                       TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"/>
                             <TextBlock Text="{Binding Price,StringFormat={}{0:C} }" Style="{StaticResource  product-price}" />
                         </StackPanel>
-                    </StackPanel>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
             <b:Interaction.Triggers>

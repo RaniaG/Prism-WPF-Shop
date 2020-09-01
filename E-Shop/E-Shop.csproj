@@ -106,6 +106,8 @@
     <Compile Include="Converters\BooleanToVisabilityNegativeConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
+    <Compile Include="Converters\MessageDialogTypeToStringConverter.cs" />
+    <Compile Include="Converters\MessageDialogTypeToStyleConverter.cs" />
     <Compile Include="Dialogs\FilterDialogView.xaml.cs" />
     <Compile Include="Dialogs\FilterDialogViewModel.cs" />
     <Compile Include="Dialogs\MessageDialogView.xaml.cs">

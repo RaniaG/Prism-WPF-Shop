@@ -66,6 +66,7 @@ namespace E_Shop.ViewModels
                 else
                 {
                     _regionManager.RequestNavigate(RegionNames.MainRegion, nameof(HomeContainerView));
+                    _regionManager.RequestNavigate(RegionNames.HeaderRegion, nameof(HeaderView));
                     _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(ProductsListView));
                 }
             }

@@ -65,6 +65,7 @@ namespace E_Shop
         {
             containerRegistry.RegisterForNavigation<LoginView, LoginViewModel>();
             containerRegistry.RegisterForNavigation<HomeContainerView>();
+            containerRegistry.RegisterForNavigation<HeaderView, HeaderViewModel>();
             containerRegistry.RegisterForNavigation<ProductsListView, ProductsListViewModel>();
             containerRegistry.RegisterForNavigation<ProductDetailsView, ProductDetailsViewModel>();
             containerRegistry.RegisterForNavigation<CartView, CartViewModel>();
